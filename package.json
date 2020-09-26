@@ -1,0 +1,23 @@
+{
+  "name": "Vitali",
+  "version": "1.0.9",
+  "description": "Caca",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reficul109/vitali-v12"
+  },
+  "main": "index",
+  "scripts": {
+    "start": "node index"
+  },
+  "engines": {
+    "node": "8.4.0"
+  },
+  "author": "Reficul",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "express": "^4.17.1",
+    "get-image-colors": "^2.0.1"
+  }
+}
