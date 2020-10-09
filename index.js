@@ -6,10 +6,10 @@ const express = require('express')
 const app = express()
 const getColors = require('get-image-colors')
 const prefix = 'vit!'
-var autoroles = ['uno!', 'casino', 'werewolf', 'among us', 'nsfw', 'mutacolor']
+var autoroles = ['uno!', 'casino', 'werewolf', 'among us', 'gente plana', 'nsfw', 'mutacolor']
 
 //Page
-var port = 3000
+var port = (process.env.PORT || 0)
 app.get('/', (req, res) => res.sendStatus(200))
 app.listen(port, () => console.log('Listening at port ' + port))
 setInterval(() => {http.get("http://vitali-v8r2--reficul109.repl.co/")}, 280000)
