@@ -22,7 +22,7 @@ client.on('userUpdate', (oldUser, newUser) => {
   var userRoles = client.guilds.cache.get("412116759668064256").member(newUser).roles
   if (oldUser.avatarURL() !== newUser.avatarURL() && userRoles.cache.find(role => role.id === "584594259550797824")) {
     getColors(newUser.displayAvatarURL({format: 'png', dynamic: true})).then(colors => {
-    client.channels.cache.get("426520047301951509").send('<@' + newUser.id + '>, Elije un color nuevo! [Responde "1", "2", "3" o Ignora]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1))
+    client.channels.cache.get("426520047301951509").send('<@' + newUser.id + '>, Pick a new color! [Reply "1", "2", "3" o Ignora]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1))
     const collector = new Discord.MessageCollector(client.channels.cache.get("426520047301951509"), m => m.author.id === newUser.id, {time: 600000})
     collector.on('collect', cMessage => {
       var numb = parseInt(cMessage.content)
