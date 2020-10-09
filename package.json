@@ -1,11 +1,7 @@
 {
-  "name": "Vitali",
+  "name": "BOTNAME",
   "version": "1.0.9",
-  "description": "Caca",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/reficul109/vitali-v8"
-  },
+  "description": "---",
   "main": "index",
   "scripts": {
     "start": "node index.js"
