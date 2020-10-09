@@ -15,7 +15,7 @@ app.listen(port, () => console.log('Listening at port ' + port))
 setInterval(() => {http.get("http://vitali-v8.herokuapp.com/")}, 280000)
 
 //Ready
-client.once('ready', () => {console.log('a')})
+client.once('ready', () => {console.log('🐢')})
 
 //Avys
 client.on('userUpdate', (oldUser, newUser) => {
