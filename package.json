@@ -1,7 +1,7 @@
 {
-  "name": "BOTNAME",
+  "name": "bridgett",
   "version": "1.0.9",
-  "description": "---",
+  "description": "Chaotic Octopi",
   "main": "index",
   "scripts": {
     "start": "node index.js"
