@@ -4,14 +4,14 @@
   "description": "Caca",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reficul109/vitali-v12"
+    "url": "https://github.com/reficul109/vitali-v8"
   },
   "main": "index",
   "scripts": {
-    "start": "node index"
+    "start": "node index.js"
   },
   "engines": {
-    "node": "8.4.0"
+    "node": "12.18.4"
   },
   "author": "Reficul",
   "license": "MIT",
