@@ -1,34 +1,34 @@
 //Packages
 const Discord = require('discord.js')
-const client = new Discord.Client({presence: {status: 'online', activity: {name: 'Comiendo Popotes'}}, disableMentions: 'everyone'})
+const client = new Discord.Client({presence: {status: 'online', activity: {name: 'GAME'}}, disableMentions: 'everyone'})
 const http = require('http')
 const express = require('express')
 const app = express()
 const getColors = require('get-image-colors')
-const prefix = 'vit!'
-var autoroles = ['uno!', 'casino', 'werewolf', 'among us', 'gente plana', 'nsfw', 'mutacolor']
+const prefix = '---!'
+var autoroles = []
 
 //Page
 var port = (process.env.PORT || 0)
 app.get('/', (req, res) => res.sendStatus(200))
 app.listen(port, () => console.log('Listening at port ' + port))
-setInterval(() => {http.get("http://vitali-v8.herokuapp.com/")}, 280000)
+setInterval(() => {http.get("http://BOTNAME-v8.herokuapp.com/")}, 280000)
 
 //Ready
-client.once('ready', () => {console.log('a')})
+client.once('ready', () => {console.log('---')})
 
 //Avys
 client.on('userUpdate', (oldUser, newUser) => {
-  var userRoles = client.guilds.cache.get("707295290461257760").member(newUser).roles
-  if (oldUser.avatarURL() !== newUser.avatarURL() && userRoles.cache.find(role => role.id === "737786182116573185")) {
+  var userRoles = client.guilds.cache.get("SERVER").member(newUser).roles
+  if (oldUser.avatarURL() !== newUser.avatarURL() && userRoles.cache.find(role => role.id === "ROLE")) {
     getColors(newUser.displayAvatarURL({format: 'png', dynamic: true})).then(colors => {
-    client.channels.cache.get("707311420735225886").send('<@' + newUser.id + '>, Elije un color nuevo! [Responde "1", "2", "3" o Ignora]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1))
-    const collector = new Discord.MessageCollector(client.channels.cache.get("707311420735225886"), m => m.author.id === newUser.id, {time: 600000})
+    client.channels.cache.get("CHANNEL").send('<@' + newUser.id + '>, Elije un color nuevo! [Responde "1", "2", "3" o Ignora]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1))
+    const collector = new Discord.MessageCollector(client.channels.cache.get("CHANNEL"), m => m.author.id === newUser.id, {time: 600000})
     collector.on('collect', cMessage => {
       var numb = parseInt(cMessage.content)
       if (numb) {userRoles.color.setColor(colors[--numb].toString())}
       collector.stop()
-      cMessage.react("714133193527132200")})})}})
+      cMessage.react("EMOTE")})})}})
 
 //Messages
 client.on('message', message => {
@@ -55,15 +55,15 @@ client.on('message', message => {
 
   //Color
   if (msgCon.startsWith(prefix + 'color ')) {
-    message.member.roles.color.setColor(argresult).catch(() => message.reply('(En HEX, que no se leer.)'))
-    message.react("714133193527132200")}
+    message.member.roles.color.setColor(argresult).catch(() => message.reply('Error.'))
+    message.react("EMOTE")}
 
   //Autoroles
   if (msgCon.startsWith(prefix + 'rol ') && autoroles.includes(argresult.toLowerCase())) {
     var roles = message.member.roles, rol = message.guild.roles.cache.find(role => role.name.toLowerCase().includes(argresult.toLowerCase()))
     if (!roles.cache.find(role => role.id === rol.id)) {roles.add(rol.id)}
     else {roles.remove(rol.id)}
-    message.react("714133193527132200")}
+    message.react("EMOTE")}
 
   //Eval
   if (msgCon.startsWith(prefix + 'eval ') && message.author.id === "320398018060746752") {
