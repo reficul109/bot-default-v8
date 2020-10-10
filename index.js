@@ -73,7 +73,7 @@ client.on('message', message => {
   //Autoroles
   if (msgCon.startsWith(prefix + 'autorol ') && autoroles.includes(argresult.toLowerCase())) {
     var roles = message.member.roles, rol = message.guild.roles.cache.find(role => role.name.toLowerCase().includes(argresult.toLowerCase()))
-    if (rol.id === "584594259550797824" && roles.color.id === "563155114886561792) {return message.reply('You need a custom role first! (' + prefix + 'rol <text>)')}
+    if (rol.id === "584594259550797824" && roles.color.id === "563155114886561792") {return message.reply('You need a custom role first! (' + prefix + 'rol <text>)')}
     if (!roles.cache.find(role => role.id === rol.id)) {roles.add(rol.id)}
     else {roles.remove(rol.id)}
     message.reply("Done!")}
