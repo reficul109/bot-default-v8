@@ -57,7 +57,7 @@ client.on('message', message => {
   if (msgCon.startsWith(prefix + 'rol ')) {
     var roles = message.member.roles
     if (roles.color.id === "563155114886561792") {
-      message.guild.roles.create({data: {name: argresult, color: "white"}}).then(role => {
+      message.guild.roles.create({data: {name: argresult, color: "WHITE"}}).then(role => {
       role.setPermissions(0)
       role.setPosition(5)
       roles.add(role.id)})}
@@ -72,7 +72,7 @@ client.on('message', message => {
     message.reply("Set!")}
 
   //Autoroles
-  if (msgCon.startsWith(prefix + 'autorol ') && autoroles.includes(argresult.toLowerCase())) {
+  if (msgCon.startsWith(prefix + 'autorole ') && autoroles.includes(argresult.toLowerCase())) {
     var roles = message.member.roles, rol = message.guild.roles.cache.find(role => role.name.toLowerCase().includes(argresult.toLowerCase()))
     if (rol.id === "584594259550797824" && roles.color.id === "563155114886561792") {return message.reply('You need a custom role first! (' + prefix + 'rol <text>)')}
     if (!roles.cache.find(role => role.id === rol.id)) {roles.add(rol.id)}
