@@ -53,14 +53,27 @@ client.on('message', message => {
     message.channel.send(argresult, {files: msgAtt})
     message.delete()}
 
+  //Rol
+  if (msgCon.startsWith(prefix + 'rol ')) {
+    var roles = message.member.roles
+    if (roles.color.id === "563155114886561792") {
+      message.guild.roles.create({data: {name: argresult}}).then(role => {
+      role.setPermissions(0)
+      role.setPosition(13)
+      roles.add(role.id)}}
+    else {roles.color.setName(argresult)}}
+
   //Color
   if (msgCon.startsWith(prefix + 'color ')) {
-    message.member.roles.color.setColor(argresult).catch(() => message.reply('Error.'))
-    message.reply("Set!")}
+    var roles = message.member.roles
+    if (roles.color.id === "563155114886561792") {return message.reply('You need a custom role first! (' + prefix + 'rol <text>)')}
+      roles.color.setColor(argresult).catch(() => message.reply('Error.'))
+      message.reply("Set!")}
 
   //Autoroles
-  if (msgCon.startsWith(prefix + 'rol ') && autoroles.includes(argresult.toLowerCase())) {
+  if (msgCon.startsWith(prefix + 'autorol ') && autoroles.includes(argresult.toLowerCase())) {
     var roles = message.member.roles, rol = message.guild.roles.cache.find(role => role.name.toLowerCase().includes(argresult.toLowerCase()))
+    if (rol.id === "584594259550797824" && roles.color.id === "563155114886561792) {return message.reply('You need a custom role first! (' + prefix + 'rol <text>)')}
     if (!roles.cache.find(role => role.id === rol.id)) {roles.add(rol.id)}
     else {roles.remove(rol.id)}
     message.reply("Done!")}
