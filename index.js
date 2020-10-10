@@ -57,11 +57,12 @@ client.on('message', message => {
   if (msgCon.startsWith(prefix + 'rol ')) {
     var roles = message.member.roles
     if (roles.color.id === "563155114886561792") {
-      message.guild.roles.create({data: {name: argresult}}).then(role => {
+      message.guild.roles.create({data: {name: argresult, color: "white"}}).then(role => {
       role.setPermissions(0)
-      role.setPosition(13)
+      role.setPosition(5)
       roles.add(role.id)})}
-    else {roles.color.setName(argresult)}}
+    else {roles.color.setName(argresult)}
+    message.reply("Done!")}
 
   //Color
   if (msgCon.startsWith(prefix + 'color ')) {
