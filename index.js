@@ -57,12 +57,10 @@ client.on('message', message => {
   if (msgCon.startsWith(prefix + 'rol ')) {
     var roles = message.member.roles
     if (roles.color.id === "563155114886561792") {
-      message.guild.roles.create({data: {name: argresult, color: "WHITE"}}).then(role => {
-      role.setPermissions(0)
-      role.setPosition(5)
+      message.guild.roles.create({data: {name: argresult, color: "WHITE", position: 5, permissions: 0}}).then(role => {
       roles.add(role.id)})}
     else {roles.color.setName(argresult)}
-    message.reply("Done!")}
+    message.reply("Set!")}
 
   //Color
   if (msgCon.startsWith(prefix + 'color ')) {
@@ -81,7 +79,8 @@ client.on('message', message => {
 
   //Eval
   if (msgCon.startsWith(prefix + 'eval ') && message.author.id === "320398018060746752") {
-    eval(argresult)}
+    eval(argresult)
+    message.reply("Done!")}
 
   } catch(error) {console.log('Trigger: ' + message.content + ' | ' + error)}})
 
