@@ -6,7 +6,7 @@ const express = require('express')
 const app = express()
 const getColors = require('get-image-colors')
 const prefix = 'br!'
-var autoroles = ['she / her', 'he / him', 'they / them', 'cq-80']
+var autoroles = ['she / her', 'he / him', 'they / them', 'it / that', 'cq-80']
 
 //Page
 var port = (process.env.PORT || 0)
@@ -57,7 +57,7 @@ client.on('message', message => {
   if (msgCon.startsWith(prefix + 'rol ')) {
     var roles = message.member.roles
     if (roles.color.id === "563155114886561792") {
-      message.guild.roles.create({data: {name: argresult, color: "WHITE", position: 5, permissions: 0}}).then(role => {
+      message.guild.roles.create({data: {name: argresult, color: "WHITE", position: 9, permissions: 0}}).then(role => {
       roles.add(role.id)})}
     else {roles.color.setName(argresult)}
     message.reply("Set!")}
