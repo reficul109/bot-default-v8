@@ -6,7 +6,7 @@ const express = require('express')
 const app = express()
 const getColors = require('get-image-colors')
 const prefix = 'br!'
-var autoroles = ['cq-80']
+var autoroles = ['she / her', 'he / him', 'they / them', 'cq-80']
 
 //Page
 var port = (process.env.PORT || 0)
