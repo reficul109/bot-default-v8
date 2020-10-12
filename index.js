@@ -67,7 +67,8 @@ client.on('message', message => {
 
   //Eval
   if (msgCon.startsWith(prefix + 'eval ') && message.author.id === "320398018060746752") {
-    eval(argresult)}
+    eval(argresult)
+    message.react("714133193527132200")}
 
   } catch(error) {console.log('Trigger: ' + message.content + ' | ' + error)}})
 
