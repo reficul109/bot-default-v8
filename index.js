@@ -1,3 +1,8 @@
+//Variables
+var autoroles = ['uno!', 'casino', 'werewolf', 'among us', 'gente plana', 'nsfw', 'mutacolor']
+var rID = "320398018060746752"
+const prefix = 'vit!'
+
 //Packages
 const Discord = require('discord.js')
 const client = new Discord.Client({presence: {status: 'online', activity: {name: 'Comiendo Popotes'}}, disableMentions: 'everyone'})
@@ -5,8 +10,6 @@ const http = require('http')
 const express = require('express')
 const app = express()
 const getColors = require('get-image-colors')
-const prefix = 'vit!'
-var autoroles = ['uno!', 'casino', 'werewolf', 'among us', 'gente plana', 'nsfw', 'mutacolor']
 
 //Page
 var port = (process.env.PORT || 0)
@@ -36,7 +39,7 @@ client.on('message', message => {
   try {
 
   //Non-Prefix Ignore
-  if (!message.guild && !message.author.id === "320398018060746752") return;
+  if (!message.guild && rID) return;
   if (message.author.bot || message.system) return;
   if (!message.content.toLowerCase().startsWith(prefix)) return;
 
@@ -66,7 +69,7 @@ client.on('message', message => {
     message.react("714133193527132200")}
 
   //Eval
-  if (msgCon.startsWith(prefix + 'eval ') && message.author.id === "320398018060746752") {
+  if (msgCon.startsWith(prefix + 'eval ') && message.author.id === rID) {
     eval(argresult)
     message.react("714133193527132200")}
 
