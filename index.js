@@ -36,7 +36,7 @@ client.on('message', message => {
   try {
 
   //Non-Prefix Ignore
-  if (!message.guild || message.author.id === "320398018060746752") return;
+  if (!message.guild && !message.author.id === "320398018060746752") return;
   if (message.author.bot || message.system) return;
   if (!message.content.toLowerCase().startsWith(prefix)) return;
 
