@@ -72,7 +72,7 @@ client.on('message', message => {
     message.delete()}
 
   //Rol
-  if (msgCon.startsWith(prefix + 'rol ')) {
+  else if (msgCon.startsWith(prefix + 'rol ')) {
     var roles = message.member.roles
     if (roles.color.id === "563155114886561792") {
       message.guild.roles.create({data: {name: argresult, color: "WHITE", position: 9, permissions: 0}}).then(role => {
@@ -81,19 +81,74 @@ client.on('message', message => {
     message.reply("Set!")}
 
   //Color
-  if (msgCon.startsWith(prefix + 'color ')) {
+  else if (msgCon.startsWith(prefix + 'color ')) {
     var roles = message.member.roles
     if (roles.color.id === "563155114886561792") {return message.reply('You need a custom role first! (' + prefix + 'rol <text>)')}
     roles.color.setColor(argresult).catch(() => message.reply('Error.'))
     message.reply("Set!")}
 
   //Autoroles
-  if (msgCon.startsWith(prefix + 'autorole ') && autoroles.includes(argresult.toLowerCase())) {
+  else if (msgCon.startsWith(prefix + 'autorole ') && autoroles.includes(argresult.toLowerCase())) {
     var roles = message.member.roles, rol = message.guild.roles.cache.find(role => role.name.toLowerCase().includes(argresult.toLowerCase()))
     if (rol.id === "584594259550797824" && roles.color.id === "563155114886561792") {return message.reply('You need a custom role first! (' + prefix + 'rol <text>)')}
     if (!roles.cache.find(role => role.id === rol.id)) {roles.add(rol.id)}
     else {roles.remove(rol.id)}
     message.reply("Done!")}
+
+  //Chaos
+  else if (message.content.toLowerCase() === (prefix + 'chaos')) {
+    message.delete()
+    const chaos = new Discord.MessageCollector(message.channel, m => m.author.id !== bID, {time: 3600000})
+    var c_guild = message.guild.id
+    var origin = message.channel
+    origin.send('Chaos mode on for 1 hour! 📦')
+
+    chaos.on('collect', message => {
+
+      if (message.content.toLowerCase() === (prefix + 'get back to your box') && client.guilds.get('412116759668064256').member(message.author).roles.find(role => role.id === ('458840596988035072'))) {
+        return chaos.stop()}
+
+      if (message.content.toLowerCase().startsWith(prefix + 'say ')) return;
+
+      var b_msg = trashtalk[Math.floor(Math.random() * trashtalk.length)]
+      var b_rct = emotes[Math.floor(Math.random() * emotes.length)]
+      var one = ["0", "1"], two = ["2", "3"], three = ["4", "5"], four = ["6", "7"], five = ["8", "9"]
+
+      if (one.some(word => message.id.endsWith(word))) {
+        message.author.send(b_msg).catch(() => origin.send(b_msg)).then(function (message) {
+        var sent_in = message.channel;
+        const collector = new Discord.MessageCollector(sent_in, m => m.author.id !== bID, {time: 20000})
+        collector.on('collect', message => {collector.stop()})
+        collector.on('end', message => {if (!collector.received) {
+        var b_ign = igno[Math.floor(Math.random() * igno.length)]
+        sent_in.send(b_ign)}})})}
+
+      else if (two.some(word => message.id.endsWith(word))) {
+        origin.send(b_msg).then(function (message) {
+        var sent_in = message.channel;
+        const collector = new Discord.MessageCollector(sent_in, m => m.author.id !== bID, {time: 20000})
+        collector.on('collect', message => {collector.stop()})
+        collector.on('end', message => {if (!collector.received) {
+        var b_ign = igno[Math.floor(Math.random() * igno.length)]
+        sent_in.send(b_ign)}})})}
+
+      else if (three.some(word => message.id.endsWith(word))) {
+        client.guilds.cache.get(c_guild).member(message.author.id).setNickname(b_msg).catch(() => origin.send(b_msg).then(function (message) {
+        var sent_in = message.channel; 
+        const collector = new Discord.MessageCollector(sent_in, m => m.author.id !== bID, {time: 20000})
+        collector.on('collect', message => {collector.stop()})
+        collector.on('end', message => {if (!collector.received) {
+        var b_ign = igno[Math.floor(Math.random() * igno.length)]
+        sent_in.send(b_ign)}})}))}
+
+      else if (four.some(word => message.id.endsWith(word))) {
+        client.guilds.cache.get(c_guild).member(bID).setNickname(b_msg)}
+
+      else if (five.some(word => message.id.endsWith(word))) {
+        message.react(b_rct)}})
+
+  chaos.on('end', message => {origin.send('Nap...')})}
+
 
   //Eval
   if (msgCon.startsWith(prefix + 'eval ') && message.author.id === rID) {
