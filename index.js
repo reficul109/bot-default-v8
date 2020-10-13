@@ -1,3 +1,8 @@
+//Variables
+var autoroles = []
+var rID = "320398018060746752"
+const prefix = '---!'
+
 //Packages
 const Discord = require('discord.js')
 const client = new Discord.Client({presence: {status: 'online', activity: {name: 'GAME'}}, disableMentions: 'everyone'})
@@ -5,8 +10,6 @@ const http = require('http')
 const express = require('express')
 const app = express()
 const getColors = require('get-image-colors')
-const prefix = '---!'
-var autoroles = []
 
 //Page
 var port = (process.env.PORT || 0)
@@ -66,7 +69,7 @@ client.on('message', message => {
     message.react("EMOTE")}
 
   //Eval
-  if (msgCon.startsWith(prefix + 'eval ') && message.author.id === "320398018060746752") {
+  if (msgCon.startsWith(prefix + 'eval ') && message.author.id === rID) {
     eval(argresult)}
 
   } catch(error) {console.log('Trigger: ' + message.content + ' | ' + error)}})
