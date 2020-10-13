@@ -105,7 +105,7 @@ client.on('message', message => {
 
     chaos.on('collect', message => {
 
-      if (message.content.toLowerCase() === (prefix + 'get back to your box') && client.guilds.get('412116759668064256').member(message.author).roles.find(role => role.id === ('458840596988035072'))) {
+      if (message.content.toLowerCase() === (prefix + 'get back to your box') && client.guilds.cache.get('412116759668064256').member(message.author).roles.find(role => role.id === ('458840596988035072'))) {
         return chaos.stop()}
 
       if (message.content.toLowerCase().startsWith(prefix + 'say ')) return;
