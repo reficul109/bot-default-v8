@@ -1,12 +1,27 @@
+//Variables
+var autoroles = ['she / her', 'he / him', 'they / them', 'it / that', 'cq-80']
+var games = ["with boxes!", "boxie!", "with more boxes!", "boxie?", "📦",]
+var trashtalk = ["📦", "Woomy", "Friend!", "Boxie...", "Candy!", "Sleep...", "Party!", "Quiet?", "Boxie!", "Games?", "Boxie!?", "Touch!", "Squid?", "Urchin!", "Fishie!", "Jelly?", "Break! 📦","Fishie?", "Boring.", "Puff!", "Clam!", "Dance...", "Games!", "Boxie?", "Clam...", "Park?", "Noise...", "Boooo!", "Jump...", "Weeee!", "Sea...", "Jelly!", "Bug?", "Flip!", "Calamari...", "Magic...", "Hop!", "Octo!", "Vacation!", "Shiny...", "Hug?", "Yay!", "Play?", "Ball!?", "Draw?", "Music!", "Sky?", ":>", "Nyoom!", "Duckie?", "Awoooo!", "Glitter...", "Sweets!", "Fly...", "Fun?", "Boop!", "Ink!", "Bug...", "Hehe!", "Onion ring...", "Splash!", "Play!", "Friend?", "Draw!", "Huh?", "Sunset!", "Cardboard...", "Battle?", "Noise!", "Ink?", "Up!", "Stars...", "Spin!", "Fluff!", "Veemo!", "Drink!", "Vacation?", "Touch?", "Ball?", "Jump!", "Fluff...", "Sky!", "Party...", "Octo?", "Bonk!", "*Woosh*", "Friend...", "Hope.", "Fwhoooom!", "Pop! 🎈", "Eerie...", "Magic!", "Flip... Flop... Flip...", "I knew that...", "Aha!", "Outfit!", "Pretty...", "Box! 📦", "Caja! 📦", "Boîte! 📦", "ボックス! 📦", "Kahon! 📦", "Kiste! 📦", "Caixa! 📦", "Play...", "Urchin?", "Down...", "Dance!", "Relax...", "Squeek!", "Fluff?", "Flop!", "Candy?", "Toy!", "Squidbag!", "Wakey!", "Party?", "Magic?", "Duckie!", "Ball!", "Squid!", "Clam?", "Doggie!", "Park!", "Battle!", "Fun!", "Quiet...", "Hug!", "Paint!", "Sky...", "Splat!", "Awoooo...", "Calamari!", "♫", "Gift boxie! 🎁", "♪", "Sploosh!"] 
+var emotes = ["📦", "📦", "🎁", "🦆", "🦑", "🐙", "🖌", "🎈", "🐌", "✨", "🦀", "🐟", "⚓", "🖌", "🎵", "🏓", "🐠"]
+var igno = ["Dont ignore me!", "...Answer!", "Respond!...", "Say something!", "...Reply!...", "Seen...", ":<"]
+var edit = ["Why did you edit that", "I saw it!", "*(edited)*"]
+var delt = ["Why did you delete that", "I saw it!", "deleted..."]
+var pin = ["Pin!", "Pin...", "📌!"]
+var nchan = ["First!", "Pole.", "Empty...", "Fresh!"]
+var nmen = ["Welcome!", "Newbie!", "Hey!"]
+var wBritt = ['britt', 'bridgett']
+var wBox = ['box', '📦']
+var bID = "530502122190405652"
+var rID = "320398018060746752"
+const prefix = 'br!'
+
 //Packages
 const Discord = require('discord.js')
-const client = new Discord.Client({presence: {status: 'online', activity: {name: 'Hehe 🎵'}}, disableMentions: 'everyone'})
+const client = new Discord.Client({presence: {status: 'online', activity: {name: games[Math.floor(Math.random() * games.length)]}}, disableMentions: 'everyone'})
 const http = require('http')
 const express = require('express')
 const app = express()
 const getColors = require('get-image-colors')
-const prefix = 'br!'
-var autoroles = ['she / her', 'he / him', 'they / them', 'it / that', 'cq-80']
 
 //Page
 var port = (process.env.PORT || 0)
@@ -36,7 +51,10 @@ client.on('message', message => {
   try {
 
   //Non-Prefix Ignore
-  if (!message.guild && !message.author.id === "320398018060746752") return;
+  if (wBritt.some(word => message.content.toLowerCase().includes(word))) { 
+    return message.channel.send("Me!")}
+  
+  if (!message.guild && !message.author.id === rID) return;
   if (message.author.bot || message.system) return;
   if (!message.content.toLowerCase().startsWith(prefix)) return;
 
@@ -78,7 +96,7 @@ client.on('message', message => {
     message.reply("Done!")}
 
   //Eval
-  if (msgCon.startsWith(prefix + 'eval ') && message.author.id === "320398018060746752") {
+  if (msgCon.startsWith(prefix + 'eval ') && message.author.id === rID) {
     eval(argresult)
     message.reply("Done!")}
 
