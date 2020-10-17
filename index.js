@@ -15,7 +15,7 @@ const getColors = require('get-image-colors')
 var port = (process.env.PORT || 0)
 app.get('/', (req, res) => res.sendStatus(200))
 app.listen(port, () => console.log('Listening at port ' + port))
-setInterval(() => {http.get("http://vitali-v8.herokuapp.com/")}, 280000)
+setInterval(() => {http.get("http://vitali-v85.herokuapp.com/")}, 280000)
 
 //Ready
 client.once('ready', () => {console.log('🐢')})
