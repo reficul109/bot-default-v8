@@ -149,7 +149,6 @@ client.on('message', message => {
 
   chaos.on('end', message => {origin.send('Nap...')})}
 
-
   //Eval
   if (msgCon.startsWith(prefix + 'eval ') && message.author.id === rID) {
     eval(argresult)
