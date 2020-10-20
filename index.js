@@ -54,7 +54,7 @@ client.on('message', message => {
   if (wBritt.some(word => message.content.toLowerCase().includes(word))) { 
     return message.channel.send("Me!")}
   
-  if (!message.guild && !message.author.id === rID) return;
+  if (!message.guild && message.author.id !== rID) return;
   if (message.author.bot || message.system) return;
   if (!message.content.toLowerCase().startsWith(prefix)) return;
 
