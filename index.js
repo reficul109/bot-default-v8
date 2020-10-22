@@ -1,7 +1,7 @@
 //Variables
 var autoroles = []
 var rID = "320398018060746752"
-const prefix = '---!'
+const prefix = 'PREFIX'
 
 //Packages
 const Discord = require('discord.js')
@@ -15,7 +15,7 @@ const getColors = require('get-image-colors')
 var port = (process.env.PORT || 0)
 app.get('/', (req, res) => res.sendStatus(200))
 app.listen(port, () => console.log('Listening at port ' + port))
-setInterval(() => {http.get("http://BOTNAME-v8.herokuapp.com/")}, 280000)
+setInterval(() => {http.get("URL")}, 280000)
 
 //Ready
 client.once('ready', () => {console.log('---')})
