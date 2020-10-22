@@ -1,6 +1,6 @@
 //Variables
-var ownerID = "---"
-const prefix = '---'
+var ownerID = "YOURID"
+const prefix = 'PREFIX'
 
 //Packages
 const Discord = require('discord.js')
