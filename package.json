@@ -1,7 +1,7 @@
 {
   "name": "BOTNAME",
   "version": "1.0.9",
-  "description": "---",
+  "description": "DESCRIPTION",
   "main": "index",
   "scripts": {
     "start": "node index.js"
