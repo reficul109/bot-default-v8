@@ -101,7 +101,7 @@ client.on('message', message => {
     const chaos = new Discord.MessageCollector(message.channel, m => m.author.id !== bID, {time: 3600000})
     var c_guild = message.guild.id
     var origin = message.channel
-    origin.send('Chaos mode on for 1 hour! 📦')
+    origin.send('Hehe~ 📦')
 
     chaos.on('collect', message => {
 
