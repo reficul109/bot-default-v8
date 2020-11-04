@@ -1,5 +1,5 @@
 //Variables
-var autoroles = ['she / her', 'he / him', 'they / them', 'it / that', 'cq-80']
+var autoroles = ['she / her', 'he / him', 'they / them', 'it / that', 'hide spanish', 'hide english', 'hide portuguese', 'hide french', 'cq-80']
 var games = ["with boxes!", "boxie!", "with more boxes!", "boxie?", "📦",]
 var trashtalk = ["📦", "Woomy", "Friend!", "Boxie...", "Candy!", "Sleep...", "Party!", "Quiet?", "Boxie!", "Games?", "Boxie!?", "Touch!", "Squid?", "Urchin!", "Fishie!", "Jelly?", "Break! 📦","Fishie?", "Boring.", "Puff!", "Clam!", "Dance...", "Games!", "Boxie?", "Clam...", "Park?", "Noise...", "Boooo!", "Jump...", "Weeee!", "Sea...", "Jelly!", "Bug?", "Flip!", "Calamari...", "Magic...", "Hop!", "Octo!", "Vacation!", "Shiny...", "Hug?", "Yay!", "Play?", "Ball!?", "Draw?", "Music!", "Sky?", ":>", "Nyoom!", "Duckie?", "Awoooo!", "Glitter...", "Sweets!", "Fly...", "Fun?", "Boop!", "Ink!", "Bug...", "Hehe!", "Onion ring...", "Splash!", "Play!", "Friend?", "Draw!", "Huh?", "Sunset!", "Cardboard...", "Battle?", "Noise!", "Ink?", "Up!", "Stars...", "Spin!", "Fluff!", "Veemo!", "Drink!", "Vacation?", "Touch?", "Ball?", "Jump!", "Fluff...", "Sky!", "Party...", "Octo?", "Bonk!", "*Woosh*", "Friend...", "Hope.", "Fwhoooom!", "Pop! 🎈", "Eerie...", "Magic!", "Flip... Flop... Flip...", "I knew that...", "Aha!", "Outfit!", "Pretty...", "Box! 📦", "Caja! 📦", "Boîte! 📦", "ボックス! 📦", "Kahon! 📦", "Kiste! 📦", "Caixa! 📦", "Play...", "Urchin?", "Down...", "Dance!", "Relax...", "Squeek!", "Fluff?", "Flop!", "Candy?", "Toy!", "Squidbag!", "Wakey!", "Party?", "Magic?", "Duckie!", "Ball!", "Squid!", "Clam?", "Doggie!", "Park!", "Battle!", "Fun!", "Quiet...", "Hug!", "Paint!", "Sky...", "Splat!", "Awoooo...", "Calamari!", "♫", "Gift boxie! 🎁", "♪", "Sploosh!"] 
 var emotes = ["📦", "📦", "🎁", "🦆", "🦑", "🐙", "🖌", "🎈", "🐌", "✨", "🦀", "🐟", "⚓", "🖌", "🎵", "🏓", "🐠"]
@@ -77,7 +77,7 @@ client.on('message', message => {
   else if (msgCon.startsWith(prefix + 'rol ')) {
     var roles = message.member.roles
     if (roles.color.id === "563155114886561792") {
-      message.guild.roles.create({data: {name: argresult, color: "WHITE", position: 9, permissions: 0}}).then(role => {
+      message.guild.roles.create({data: {name: argresult, color: "WHITE", position: 16, permissions: 0}}).then(role => {
       roles.add(role.id)})}
     else {roles.color.setName(argresult)}
     message.reply("Set!")}
