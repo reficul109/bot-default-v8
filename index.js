@@ -84,6 +84,7 @@ client.on('message', message => {
 
   //Color
   else if (msgCon.startsWith(prefix + 'color ')) {
+    if(argresult === "000000") {return message.reply("Discord doesn't like this color...")}
     var roles = message.member.roles
     if (roles.color.id === "563155114886561792") {return message.reply('You need a custom role first! (' + prefix + 'role <text>)')}
     roles.color.setColor(argresult).catch(() => message.reply('Error.'))
