@@ -13,6 +13,7 @@ var wBritt = ['britt', 'bridgett']
 var wBox = ['box', '📦']
 var bID = "530502122190405652"
 var rID = "320398018060746752"
+var bGuild = "412116759668064256"
 const prefix = 'br!'
 
 //Packages
@@ -100,13 +101,12 @@ client.on('message', message => {
   else if (message.content.toLowerCase() === (prefix + 'chaos')) {
     message.delete()
     const chaos = new Discord.MessageCollector(message.channel, m => m.author.id !== bID, {time: 3600000})
-    var c_guild = message.guild.id
     var origin = message.channel
-    origin.send('Hehe~ 📦')
+    origin.send('Hehe~')
 
     chaos.on('collect', message => {
 
-      if (message.content.toLowerCase() === (prefix + 'get back to your box') && client.guilds.cache.get('412116759668064256').member(message.author).roles.find(role => role.id === ('458840596988035072'))) {
+      if (message.content.toLowerCase() === (prefix + 'get back to your box') && client.guilds.cache.get(bGuild).member(message.author).roles.find(role => role.id === ('458840596988035072'))) {
         return chaos.stop()}
 
       if (message.content.toLowerCase().startsWith(prefix + 'say ')) return;
@@ -134,7 +134,7 @@ client.on('message', message => {
         sent_in.send(b_ign)}})})}
 
       else if (three.some(word => message.id.endsWith(word))) {
-        client.guilds.cache.get(c_guild).member(message.author.id).setNickname(b_msg).catch(() => origin.send(b_msg).then(function (message) {
+        client.guilds.cache.get(bGuild).member(message.author.id).setNickname(b_msg).catch(() => origin.send(b_msg).then(function (message) {
         var sent_in = message.channel; 
         const collector = new Discord.MessageCollector(sent_in, m => m.author.id !== bID, {time: 20000})
         collector.on('collect', message => {collector.stop()})
@@ -143,7 +143,7 @@ client.on('message', message => {
         sent_in.send(b_ign)}})}))}
 
       else if (four.some(word => message.id.endsWith(word))) {
-        client.guilds.cache.get(c_guild).member(bID).setNickname(b_msg)}
+        client.guilds.cache.get(bGuild).member(bID).setNickname(b_msg)}
 
       else if (five.some(word => message.id.endsWith(word))) {
         message.react(b_rct)}})
