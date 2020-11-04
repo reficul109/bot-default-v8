@@ -35,7 +35,7 @@ client.once('ready', () => {console.log('🐙')})
 
 //Avys
 client.on('userUpdate', (oldUser, newUser) => {
-  var userRoles = client.guilds.cache.get("412116759668064256").member(newUser).roles
+  var userRoles = client.guilds.cache.get(bGuild).member(newUser).roles
   if (oldUser.avatarURL() !== newUser.avatarURL() && userRoles.cache.find(role => role.id === "584594259550797824")) {
     getColors(newUser.displayAvatarURL({format: 'png', dynamic: true})).then(colors => {
     client.channels.cache.get("426520047301951509").send('<@' + newUser.id + '>, Pick a new color! [Reply "1", "2", "3" or Ignore]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1))
