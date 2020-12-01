@@ -69,7 +69,7 @@ client.on('message', message => {
   if (message.attachments.size) {var msgAtt = Array.from(message.attachments.values(), x => x.url)}
 
   //Say
-  if (msgCon.startsWith(prefix + 'say')) {
+  if (msgCon.startsWith(prefix + 'say') && (argresult ||  msgAtt)) {
     message.channel.send(argresult, {files: msgAtt})
     message.delete()}
 
