@@ -1,3 +1,4 @@
+//Variables
 var autorolesReef = ['she / her', 'he / him', 'they / them', 'it / that', 'hide spanish', 'hide english', 'hide portuguese', 'hide french', 'showdown!', 'cq-80']
 var autorolesSDJ = ['uno!', 'casino', 'werewolf', 'among us', 'gente plana', 'nsfw', 'mutacolor']
 var games = ["with boxes!", "boxie!", "with more boxes!", "boxie?", "📦",]
@@ -70,7 +71,7 @@ client.on('message', message => {
 
   //Current Guild
   var guild = 0;
-  if (message.guild.id === "707295290461257760") {guild++;}
+  if (message.guild === client.guilds.cache.get("707295290461257760")) {guild++;}
 
   //Args
   var msgCon = message.content.toLowerCase()
@@ -84,6 +85,12 @@ client.on('message', message => {
   if (msgCon.startsWith(prefix + 'say') && (argresult || msgAtt)) {
     message.channel.send(argresult, {files: msgAtt})
     message.delete()}
+    
+  //Edit
+  if (msgCon.startsWith(prefix + 'edit ') && args[3]) {
+    var chann = client.channels.cache.get(args[1])
+    chann.messages.fetch(args[2]).then(function (nMessage) {
+      nMessage.edit(args.slice(3).join(' '))})}
 
   //Rol
   else if (msgCon.startsWith(prefix + 'role ') && guild === 0) {
