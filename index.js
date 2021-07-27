@@ -96,8 +96,8 @@ client.on('message', message => {
   //Vitali
   if (msgCon.startsWith(prefix + 'vit ')) {
     client.fetchWebhook("869232606133252207", "JpQ9cAb_t2RcgebgFIjbN742tWSn4M1b6S6wmEVr4yYLKlOXZH-8NFNMCDeZUQLLU_ry").then(webhook => {
-    webhook.edit({avatar: this.avatar, channel: message.channel)})})
-    webhook.send(argresult)
+    webhook.edit({avatar: this.avatar, channel: message.channel})
+    webhook.send(argresult)})
     message.delete()}
 
   //Edit
