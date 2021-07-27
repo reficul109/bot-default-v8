@@ -60,13 +60,20 @@ client.on('message', message => {
 
   try {
 
+  //Ignore Bots
+  if (message.author.bot || message.system) return;
+
   //Britt
-  if (wBritt.some(word => message.content.toLowerCase().includes(word))) { 
+  if (wBritt.some(word => message.content.toLowerCase().includes(word))) {
     return message.channel.send("Me!")}
+
+  //Box
+  if (wBox.some(word => message.content.toLowerCase().includes(word))) {
+    message.react("📦")
+    return message.channel.send("Boxie!")}
 
   //Non-Prefix Ignore
   if (!message.guild && message.author.id !== rID) return;
-  if (message.author.bot || message.system) return;
   if (!message.content.toLowerCase().startsWith(prefix)) return;
 
   //Current Guild
@@ -85,12 +92,18 @@ client.on('message', message => {
   if (msgCon.startsWith(prefix + 'say') && (argresult || msgAtt)) {
     message.channel.send(argresult, {files: msgAtt})
     message.delete()}
-    
+
+  //Vitali
+  if (msgCon.startsWith(prefix + 'vit ')) {
+    client.fetchWebhook("869232606133252207", "JpQ9cAb_t2RcgebgFIjbN742tWSn4M1b6S6wmEVr4yYLKlOXZH-8NFNMCDeZUQLLU_ry").then(webhook => {
+    webhook.edit({avatar: this.avatar, channel: message.channel)})})
+    webhook.send(argresult)
+    message.delete()}
+
   //Edit
   if (msgCon.startsWith(prefix + 'edit ') && args[3]) {
     var chann = client.channels.cache.get(args[1])
-    chann.messages.fetch(args[2]).then(function (nMessage) {
-      nMessage.edit(args.slice(3).join(' '))})}
+    chann.messages.fetch(args[2]).then(function (nMessage) {nMessage.edit(args.slice(3).join(' '))})}
 
   //Rol
   else if (msgCon.startsWith(prefix + 'role ') && guild === 0) {
