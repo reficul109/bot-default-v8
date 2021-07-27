@@ -94,7 +94,7 @@ client.on('message', message => {
     message.delete()}
 
   //Vitali
-  if (msgCon.startsWith(prefix + 'vit ')) {
+  if (msgCon.startsWith(prefix + 'vit ') && guild === 1) {
     client.fetchWebhook("869232606133252207", "JpQ9cAb_t2RcgebgFIjbN742tWSn4M1b6S6wmEVr4yYLKlOXZH-8NFNMCDeZUQLLU_ry").then(async webhook => {
     await webhook.edit({avatar: this.avatar, channel: message.channel})
     await webhook.send(argresult)})
