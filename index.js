@@ -39,7 +39,7 @@ function newAvy(int, oldUser, newUser) {
     if (oldUser.avatarURL() !== newUser.avatarURL() && userRoles.cache.find(role => role.id === avyRoles[int])) {
       getColors(newUser.displayAvatarURL({format: 'png', dynamic: true})).then(colors => {
       client.channels.cache.get(avyChanns[int]).send('<@' + newUser.id + '>, Pick a new color! [Reply "1", "2", "3" or Ignore]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1))
-      const collector = new Discord.MessageCollector(client.channels.cache.get(avyChanns[int]), m => m.author.id === newUser.id, {time: 600000})
+      const collector = new Discord.MessageCollector(client.channels.cache.get(avyChanns[int]), m => m.author.id === newUser.id, {time: 1800000})
       collector.on('collect', cMessage => {
         var numb = parseInt(cMessage.content)
         if (numb) {userRoles.color.setColor(colors[--numb].toString())}
