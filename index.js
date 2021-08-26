@@ -94,14 +94,14 @@ client.on('message', message => {
     message.delete()}
 
   //Vitali
-  if (msgCon.startsWith(prefix + 'vit ') && guild === 1) {
+  else if (msgCon.startsWith(prefix + 'vit ') && guild === 1) {
     client.fetchWebhook("869232606133252207", "JpQ9cAb_t2RcgebgFIjbN742tWSn4M1b6S6wmEVr4yYLKlOXZH-8NFNMCDeZUQLLU_ry").then(async webhook => {
     await webhook.edit({avatar: this.avatar, channel: message.channel})
     await webhook.send(argresult)})
     message.delete()}
 
   //Edit
-  if (msgCon.startsWith(prefix + 'edit ') && args[3]) {
+  eñse if (msgCon.startsWith(prefix + 'edit ') && args[3]) {
     var chann = client.channels.cache.get(args[1])
     chann.messages.fetch(args[2]).then(function (nMessage) {nMessage.edit(args.slice(3).join(' '))})}
 
@@ -130,6 +130,33 @@ client.on('message', message => {
     if (!roles.cache.find(role => role.id === rol.id)) {roles.add(rol.id)}
     else {roles.remove(rol.id)}
     message.reply("Done!")}
+  
+  //Dumb Game
+  else if (message.content.toLowerCase() === (prefix + '🏓')) {
+    var player = message.author, origin = message.channel
+    message.channel.send('🏓!')
+    const game = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, { time: 60000})
+    var safes = ["0", "1", "2", "3", "4", "5"], traps = ["6", "7", "8", "9"]
+    game.on('collect', message => {
+      if (player.lastMessage.content === ('🏓') && client.user.lastMessage.content === ('💣!')) {
+        message.channel.send('You lost...')
+        game.stop()}
+      if (safes.some(word => player.lastMessage.content === ('🏓') && client.user.lastMessage.content === ('🏓!') && player.lastMessage.id.endsWith(word))) {
+        message.channel.send('🏓!').then(async function (message) {
+        const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000})
+        collector.on('collect', message => {collector.stop()})
+        collector.on('end', message => {
+          if (collector.received == (0)) {
+          origin.send('You lost... Ping faster!')
+          game.stop()}})})}
+      if (traps.some(word => player.lastMessage.content === ('🏓') && client.user.lastMessage.content === ('🏓!') && player.lastMessage.id.endsWith(word))) {
+        message.channel.send('💣!').then(async function (message) {
+        const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, { time: 2000 })
+        collector.on('collect', message => {collector.stop()})
+        collector.on('end', message => {
+          if (collector.received == (0)) {origin.send('🏓!')}})})}})
+          game.on('end', message => {
+          origin.send(game.received + " points!")})}
 
   //Chaos
   else if (message.content.toLowerCase() === (prefix + 'chaos') && guild === 0) {
