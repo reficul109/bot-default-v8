@@ -101,7 +101,7 @@ client.on('message', message => {
     message.delete()}
 
   //Edit
-  eñse if (msgCon.startsWith(prefix + 'edit ') && args[3]) {
+  else if (msgCon.startsWith(prefix + 'edit ') && args[3]) {
     var chann = client.channels.cache.get(args[1])
     chann.messages.fetch(args[2]).then(function (nMessage) {nMessage.edit(args.slice(3).join(' '))})}
 
@@ -135,7 +135,7 @@ client.on('message', message => {
   else if (message.content.toLowerCase() === (prefix + '🏓')) {
     var player = message.author, origin = message.channel
     message.channel.send('🏓!')
-    const game = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, { time: 60000})
+    const game = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 60000})
     var safes = ["0", "1", "2", "3", "4", "5"], traps = ["6", "7", "8", "9"]
     game.on('collect', message => {
       if (player.lastMessage.content === ('🏓') && client.user.lastMessage.content === ('💣!')) {
@@ -151,7 +151,7 @@ client.on('message', message => {
           game.stop()}})})}
       if (traps.some(word => player.lastMessage.content === ('🏓') && client.user.lastMessage.content === ('🏓!') && player.lastMessage.id.endsWith(word))) {
         message.channel.send('💣!').then(async function (message) {
-        const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, { time: 2000 })
+        const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000 })
         collector.on('collect', message => {collector.stop()})
         collector.on('end', message => {
           if (collector.received == (0)) {origin.send('🏓!')}})})}})
