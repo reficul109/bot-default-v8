@@ -138,7 +138,7 @@ client.on('message', message => {
     const game = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 90000})
     var safes = ["0", "1", "2", "3", "4", "5"], traps = ["6", "7", "8", "9"]
     game.on('collect', message => {
-      if (player.lastMessage.content === ('🏓') && client.user.lastMessage.content === ('💣!')) {
+      if (player.lastMessage.content === ('🏓') && client.user.lastMessage.content === ('💣❗')) {
         message.channel.send('You lost...')
         game.stop()}
       if (safes.some(word => player.lastMessage.content === ('🏓') && client.user.lastMessage.content === ('🏓❗') && player.lastMessage.id.endsWith(word))) {
@@ -154,7 +154,7 @@ client.on('message', message => {
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000 })
         collector.on('collect', message => {collector.stop()})
         collector.on('end', message => {
-          if (collector.received == (0)) {origin.send('🏓!')}})})}})
+          if (collector.received == (0)) {origin.send('🏓❗')}})})}})
           game.on('end', message => {
           origin.send(game.received + " points!")})}
 
