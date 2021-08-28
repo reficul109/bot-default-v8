@@ -135,7 +135,7 @@ client.on('message', message => {
   else if (message.content.toLowerCase() === (prefix + '🏓')) {
     var player = message.author, origin = message.channel
     message.channel.send('🏓❗')
-    const game = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 90000})
+    const game = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 600000})
     var safes = ["0", "1", "2", "3", "4", "5"], traps = ["6", "7", "8", "9"]
     var bonus = 0
     game.on('collect', message => {
