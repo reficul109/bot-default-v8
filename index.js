@@ -145,15 +145,13 @@ client.on('message', message => {
       else if (player.lastMessage.content === ('🏓')) {
         score++
         if (player.lastMessage.content === ('🏓') && player.lastMessage.id.endsWith("0")) {
-          britt_swinged = false
-          message.channel.send('<a:golden_ping:881376853233897472>❗').then(async function (message) {
-          const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 1000})
+          message.channel.send('<:golden_ping:881382652488343603>❗').then(async function (message) {
+          const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 1200})
           collector.on('collect', message => {
             score = (score + 3)
             collector.stop()})
           collector.on('end', message => {
-            if (collector.received == (0)) {
-              origin.send('🏓❗<:dots:881376853233897472>')}})})}
+            if (collector.received == (0)) {origin.send('🏓<:dots:881376853233897472>')}})})}
         else if (safes.some(word => player.lastMessage.content === ('🏓') && player.lastMessage.id.endsWith(word))) {
           message.channel.send('🏓❗').then(async function (message) {
           const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000})
@@ -171,7 +169,7 @@ client.on('message', message => {
             if (collector.received == (0)) {
               britt_swinged = true
               score++
-              origin.send('🏓❗<:dots:881376853233897472>')}})})}}})
+              origin.send('🏓<:dots:881376853233897472>')}})})}}})
             game.on('end', message => {
             origin.send(score + " points!")})}
 
