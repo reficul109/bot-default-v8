@@ -148,7 +148,7 @@ client.on('message', message => {
           message.channel.send('<:golden_ping:881382652488343603>❗').then(async function (message) {
           const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 1200})
           collector.on('collect', message => {
-            score = (score + 3)
+            score = (score + 2)
             collector.stop()})
           collector.on('end', message => {
             if (collector.received == (0)) {origin.send('🏓<:dots:881376853233897472>')}})})}
@@ -168,7 +168,7 @@ client.on('message', message => {
           collector.on('end', message => {
             if (collector.received == (0)) {
               britt_swinged = true
-              score++
+              score = (score + 1)
               origin.send('🏓<:dots:881376853233897472>')}})})}}})
             game.on('end', message => {
             origin.send(score + " points!")})}
