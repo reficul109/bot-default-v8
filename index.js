@@ -131,17 +131,18 @@ client.on('message', message => {
     else {roles.remove(rol.id)}
     message.reply("Done!")}
   
-  //Dumb Game
+  //Ping Pong Bomb
   else if (message.content.toLowerCase() === (prefix + '🏓')) {
     var player = message.author, origin = message.channel
     message.channel.send('🏓❗')
     const game = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 600000})
     var safes = ["0", "1", "2", "3", "4", "5"], traps = ["6", "7", "8", "9"]
-    var britt_swinged = true, bonus = 0
+    var britt_swinged = true, score = 0
     game.on('collect', message => {
       if (player.lastMessage.content === ('🏓') && !britt_swinged) {
         message.channel.send('You lost... Watch out for bombs!')
         game.stop()}
+      else if (player.lastMessage.content === ('🏓')) {score++}
       if (safes.some(word => player.lastMessage.content === ('🏓') && player.lastMessage.id.endsWith(word))) {
         message.channel.send('🏓❗').then(async function (message) {
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000})
@@ -150,14 +151,15 @@ client.on('message', message => {
           if (collector.received == (0)) {
           origin.send('You lost... Ping faster!')
           game.stop()}})})}
-      if (traps.some(word => player.lastMessage.content === ('🏓') && player.lastMessage.id.endsWith(word))) {
+      else if (traps.some(word => player.lastMessage.content === ('🏓') && player.lastMessage.id.endsWith(word))) {
+        britt_swinged = false
         message.channel.send('💣❗').then(async function (message) {
-        const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000 })
+        const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000})
         collector.on('collect', message => {collector.stop()})
         collector.on('end', message => {
           if (collector.received == (0)) {
             britt_swinged = true
-            bonus++
+            score++
             origin.send('🏓❗')}})})}})
           game.on('end', message => {
           origin.send((game.received + bonus) + " points!")})}
