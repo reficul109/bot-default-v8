@@ -149,8 +149,8 @@ client.on('message', message => {
         collector.on('collect', message => {collector.stop()})
         collector.on('end', message => {
           if (collector.received == (0)) {
-          origin.send('You lost... Ping faster!')
-          game.stop()}})})}
+            origin.send('You lost... Ping faster!')
+            game.stop()}})})}
       else if (traps.some(word => player.lastMessage.content === ('🏓') && player.lastMessage.id.endsWith(word))) {
         britt_swinged = false
         message.channel.send('💣❗').then(async function (message) {
@@ -162,7 +162,7 @@ client.on('message', message => {
             score++
             origin.send('🏓❗')}})})}})
           game.on('end', message => {
-          origin.send((game.received + bonus) + " points!")})}
+          origin.send(score + " points!")})}
 
   //Chaos
   else if (message.content.toLowerCase() === (prefix + 'chaos') && guild === 0) {
