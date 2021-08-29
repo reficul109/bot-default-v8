@@ -137,12 +137,12 @@ client.on('message', message => {
     message.channel.send('🏓❗')
     const game = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 600000})
     var safes = ["0", "1", "2", "3", "4", "5"], traps = ["6", "7", "8", "9"]
-    var bonus = 0
+    var britt_swinged = true, bonus = 0
     game.on('collect', message => {
-      if (player.lastMessage.content === ('🏓') && client.user.lastMessage.content === ('💣❗')) {
-        message.channel.send('You lost...')
+      if (player.lastMessage.content === ('🏓') && !britt_swinged) {
+        message.channel.send('You lost... Watch out for bombs!')
         game.stop()}
-      if (safes.some(word => player.lastMessage.content === ('🏓') && client.user.lastMessage.content === ('🏓❗') && player.lastMessage.id.endsWith(word))) {
+      if (safes.some(word => player.lastMessage.content === ('🏓') && player.lastMessage.id.endsWith(word))) {
         message.channel.send('🏓❗').then(async function (message) {
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000})
         collector.on('collect', message => {collector.stop()})
@@ -150,12 +150,13 @@ client.on('message', message => {
           if (collector.received == (0)) {
           origin.send('You lost... Ping faster!')
           game.stop()}})})}
-      if (traps.some(word => player.lastMessage.content === ('🏓') && client.user.lastMessage.content === ('🏓❗') && player.lastMessage.id.endsWith(word))) {
+      if (traps.some(word => player.lastMessage.content === ('🏓') && player.lastMessage.id.endsWith(word))) {
         message.channel.send('💣❗').then(async function (message) {
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000 })
         collector.on('collect', message => {collector.stop()})
         collector.on('end', message => {
           if (collector.received == (0)) {
+            britt_swinged = true
             bonus++
             origin.send('🏓❗')}})})}})
           game.on('end', message => {
