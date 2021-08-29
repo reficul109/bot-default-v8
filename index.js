@@ -136,7 +136,7 @@ client.on('message', message => {
     var player = message.author, origin = message.channel
     message.channel.send('🏓❗')
     const game = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 600000})
-    var safes = ["0", "1", "2", "3", "4", "5"], traps = ["6", "7", "8", "9"]
+    var safes = ["1", "2", "3", "4", "5"], traps = ["6", "7", "8", "9"]
     var britt_swinged = true, score = 0
     game.on('collect', message => {
       if (player.lastMessage.content === ('🏓') && !britt_swinged) {
@@ -144,7 +144,17 @@ client.on('message', message => {
         game.stop()}
       else if (player.lastMessage.content === ('🏓')) {
         score++
-        if (safes.some(word => player.lastMessage.content === ('🏓') && player.lastMessage.id.endsWith(word))) {
+        if (player.lastMessage.content === ('🏓') && player.lastMessage.id.endsWith("0")) {
+          britt_swinged = false
+          message.channel.send('<a:golden_ping:881376853233897472>❗').then(async function (message) {
+          const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 1000})
+          collector.on('collect', message => {
+            score = (score + 3)
+            collector.stop()})
+          collector.on('end', message => {
+            if (collector.received == (0)) {
+              origin.send('🏓❗<:dots:881376853233897472>')}})})}
+        else if (safes.some(word => player.lastMessage.content === ('🏓') && player.lastMessage.id.endsWith(word))) {
           message.channel.send('🏓❗').then(async function (message) {
           const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000})
           collector.on('collect', message => {collector.stop()})
@@ -161,7 +171,7 @@ client.on('message', message => {
             if (collector.received == (0)) {
               britt_swinged = true
               score++
-              origin.send('🏓❗')}})})}}})
+              origin.send('🏓❗<:dots:881376853233897472>')}})})}}})
             game.on('end', message => {
             origin.send(score + " points!")})}
 
