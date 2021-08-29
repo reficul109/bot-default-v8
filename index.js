@@ -161,7 +161,7 @@ client.on('message', message => {
             if (collector.received == (0)) {
               britt_swinged = true
               score++
-              origin.send('🏓❗')}})})}})
+              origin.send('🏓❗')}})})}}})
             game.on('end', message => {
             origin.send(score + " points!")})}
 
