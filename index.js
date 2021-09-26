@@ -149,7 +149,7 @@ client.on('message', message => {
           message.channel.send('<:golden_ping:881382652488343603>❗').then(async function (message) {
           const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 1200})
           collector.on('collect', rMessage => {
-            if (rMessage.content === ('🏓')) {replies++}
+            if (rMessage.content === ('🏓')) {replies++
               score = (score + 2)
               replies++
               collector.stop()}})
@@ -171,7 +171,7 @@ client.on('message', message => {
           const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000})
           collector.on('collect', rMessage => {
             if (rMessage.content === ('🏓')) {replies++
-              collector.stop()}})}
+              collector.stop()}})
           collector.on('end', message => {
             if (replies < 1) {
               britt_swinged = true
