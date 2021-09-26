@@ -137,32 +137,31 @@ client.on('message', message => {
     message.channel.send('🏓❗')
     const game = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 600000})
     var safes = ["1", "2", "3", "4", "5"], traps = ["6", "7", "8", "9"]
-    var britt_swinged = true, score = 0, replies
+    var britt_swinged = true, score = 0, replied
     game.on('collect', nMessage => {
       if (nMessage.content === ('🏓') && !britt_swinged) {
         message.channel.send('You lost... Watch out for bombs!')
         game.stop()}
       else if (nMessage.content === ('🏓')) {
         score++
-        replies = 0
+        replied = false
         if (player.lastMessage.id.endsWith("0")) {
           message.channel.send('<:golden_ping:881382652488343603>❗').then(async function (message) {
           const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 1200})
           collector.on('collect', rMessage => {
-            if (rMessage.content === ('🏓')) {replies++
+            if (rMessage.content === ('🏓')) {replied = true
               score = (score + 2)
-              replies++
               collector.stop()}})
           collector.on('end', message => {
-            if (replies < 1) {origin.send('🏓<:dots:881376853233897472>')}})})}
+            if (!replied) {origin.send('🏓<:dots:881376853233897472>')}})})}
         else if (safes.some(word => nMessage.id.endsWith(word))) {
           message.channel.send('🏓❗').then(async function (message) {
           const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000})
           collector.on('collect', rMessage => {
-            if (rMessage.content === ('🏓')) {replies++
+            if (rMessage.content === ('🏓')) {replied = true
             collector.stop()}})
           collector.on('end', message => {
-            if (replies < 1) {
+            if (!replied) {
               origin.send('You lost... Ping faster!')
               game.stop()}})})}
         else if (traps.some(word => nMessage.id.endsWith(word))) {
@@ -170,10 +169,10 @@ client.on('message', message => {
           message.channel.send('💣❗').then(async function (message) {
           const collector = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 2000})
           collector.on('collect', rMessage => {
-            if (rMessage.content === ('🏓')) {replies++
+            if (rMessage.content === ('🏓')) {replied = true
               collector.stop()}})
           collector.on('end', message => {
-            if (replies < 1) {
+            if (!replied) {
               britt_swinged = true
               score = (score + 1)
               origin.send('🏓<:dots:881376853233897472>')}})})}}})
