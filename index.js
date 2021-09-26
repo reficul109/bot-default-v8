@@ -132,7 +132,7 @@ client.on('message', message => {
     message.reply("Done!")}
   
   //Ping Pong Bomb
-  else if (message.content.toLowerCase() === (prefix + '-🏓')) {
+  else if (message.content.toLowerCase() === (prefix + '🏓')) {
     var player = message.author, origin = message.channel
     message.channel.send('🏓❗')
     const game = new Discord.MessageCollector(message.channel, m => m.author.id === player.id, {time: 600000})
@@ -172,7 +172,7 @@ client.on('message', message => {
             if (rMessage.content === ('🏓')) {replied = true
               collector.stop()}})
           collector.on('end', message => {
-            if (!replied) {
+            if (replied) {
               britt_swinged = true
               score = (score + 1)
               origin.send('🏓<:dots:881376853233897472>')}})})}}})
