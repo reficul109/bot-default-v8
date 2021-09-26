@@ -172,7 +172,7 @@ client.on('message', message => {
             if (rMessage.content === ('🏓')) {replied = true
               collector.stop()}})
           collector.on('end', message => {
-            if (replied) {
+            if (!replied) {
               britt_swinged = true
               score = (score + 1)
               origin.send('🏓<:dots:881376853233897472>')}})})}}})
