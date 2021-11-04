@@ -72,13 +72,6 @@ client.on('message', message => {
   if (wBox.some(word => message.content.toLowerCase().includes(word))) {
     message.react("📦")
     return message.channel.send("Boxie!")}
-    
-  //Cool Hearts
-  if (msgAtt && message.channel.parentID === "430744121297207296") {message.react(hearts[Math.floor(Math.random() * hearts.length)])}
-
-  //Non-Prefix Ignore
-  if (!message.guild && message.author.id !== rID) return;
-  if (!message.content.toLowerCase().startsWith(prefix)) return;
 
   //Current Guild
   var guild = 0;
@@ -91,6 +84,13 @@ client.on('message', message => {
 
   //Message Attachments
   if (message.attachments.size) {var msgAtt = Array.from(message.attachments.values(), x => x.url)}
+    
+  //Cool Hearts
+  if (msgAtt && message.channel.parentID === "430744121297207296") {message.react(hearts[Math.floor(Math.random() * hearts.length)])}
+  
+  //Non-Prefix Ignore
+  if (!message.guild && message.author.id !== rID) return;
+  if (!message.content.toLowerCase().startsWith(prefix)) return;
 
   //Say
   if (msgCon.startsWith(prefix + 'say') && (argresult || msgAtt)) {
