@@ -90,7 +90,7 @@ client.on('message', message => {
   if (message.attachments.size) {var msgAtt = Array.from(message.attachments.values(), x => x.url)}
     
   //Cool Hearts
-  if (msgAtt && origin.parentID === "430744121297207296") {message.react(hearts[Math.floor(Math.random() * hearts.length)])}
+  if (msgAtt && message.channel.parentID === "430744121297207296") {message.react(hearts[Math.floor(Math.random() * hearts.length)])}
 
   //Say
   if (msgCon.startsWith(prefix + 'say') && (argresult || msgAtt)) {
