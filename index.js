@@ -4,6 +4,7 @@ var autorolesSDJ = ['uno!', 'casino', 'werewolf', 'among us', 'gente plana', 'ns
 var games = ["with boxes!", "boxie!", "with more boxes!", "boxie?", "📦",]
 var trashtalk = ["📦", "Woomy", "Friend!", "Boxie...", "Candy!", "Sleep...", "Party!", "Quiet?", "Boxie!", "Games?", "Boxie!?", "Touch!", "Squid?", "Urchin!", "Fishie!", "Jelly?", "Break! 📦","Fishie?", "Boring.", "Puff!", "Clam!", "Dance...", "Games!", "Boxie?", "Clam...", "Park?", "Noise...", "Boooo!", "Jump...", "Weeee!", "Sea...", "Jelly!", "Bug?", "Flip!", "Calamari...", "Magic...", "Hop!", "Octo!", "Vacation!", "Shiny...", "Hug?", "Yay!", "Play?", "Ball!?", "Draw?", "Music!", "Sky?", ":>", "Nyoom!", "Duckie?", "Awoooo!", "Glitter...", "Sweets!", "Fly...", "Fun?", "Boop!", "Ink!", "Bug...", "Hehe!", "Onion ring...", "Splash!", "Play!", "Friend?", "Draw!", "Huh?", "Sunset!", "Cardboard...", "Battle?", "Noise!", "Ink?", "Up!", "Stars...", "Spin!", "Fluff!", "Veemo!", "Drink!", "Vacation?", "Touch?", "Ball?", "Jump!", "Fluff...", "Sky!", "Party...", "Octo?", "Bonk!", "*Woosh*", "Friend...", "Hope.", "Fwhoooom!", "Pop! 🎈", "Eerie...", "Magic!", "Flip... Flop... Flip...", "I knew that...", "Aha!", "Outfit!", "Pretty...", "Box! 📦", "Caja! 📦", "Boîte! 📦", "ボックス! 📦", "Kahon! 📦", "Kiste! 📦", "Caixa! 📦", "Play...", "Urchin?", "Down...", "Dance!", "Relax...", "Squeek!", "Fluff?", "Flop!", "Candy?", "Toy!", "Squidbag!", "Wakey!", "Party?", "Magic?", "Duckie!", "Ball!", "Squid!", "Clam?", "Doggie!", "Park!", "Battle!", "Fun!", "Quiet...", "Hug!", "Paint!", "Sky...", "Splat!", "Awoooo...", "Calamari!", "♫", "Gift boxie! 🎁", "♪", "Sploosh!"] 
 var emotes = ["📦", "📦", "🎁", "🦆", "🦑", "🐙", "🖌", "🎈", "🐌", "✨", "🦀", "🐟", "⚓", "🖌", "🎵", "🏓", "🐠"]
+var hearts = ["❤️", "♥️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤎", "🤍", "❣️", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "💟"]
 var igno = ["Dont ignore me!", "...Answer!", "Respond!...", "Say something!", "...Reply!...", "Seen...", ":<"]
 var edit = ["Why did you edit that", "I saw it!", "*(edited)*"]
 var delt = ["Why did you delete that", "I saw it!", "deleted..."]
@@ -87,6 +88,9 @@ client.on('message', message => {
 
   //Message Attachments
   if (message.attachments.size) {var msgAtt = Array.from(message.attachments.values(), x => x.url)}
+    
+  //Cool Hearts
+  if (msgAtt && origin.parentID === "430744121297207296") {message.react(hearts[Math.floor(Math.random() * hearts.length)])}
 
   //Say
   if (msgCon.startsWith(prefix + 'say') && (argresult || msgAtt)) {
