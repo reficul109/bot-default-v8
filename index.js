@@ -94,8 +94,11 @@ client.on('message', message => {
 
   //Say
   if (msgCon.startsWith(prefix + 'say') && (argresult || msgAtt)) {
-    message.channel.send(argresult, {files: msgAtt})
-    message.delete()}
+    if (client.channels.cache.get(args[1])) {client.channels.cache.get(args[1]).send((args.slice(2).join(' ')), {files: msgAtt})}
+    else if (client.users.cache.get(args[1])) {client.users.cache.get(args[1]).send((args.slice(2).join(' ')), {files: msgAtt})}
+    else {
+      message.channel.send(argresult, {files: msgAtt})
+      message.delete()}}
 
   //Vitali
   else if (msgCon.startsWith(prefix + 'vit ') && guild === 1) {
