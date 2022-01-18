@@ -47,7 +47,7 @@ function newAvy(int, oldUser, newUser) {
           var numb = parseInt(cMessage.content)
           if (cMessage.content === '+') {
             nMessage.edit(secondColors)}
-          else if (cMessage.content) === '-') {
+          else if (cMessage.content === '-') {
             nMessage.edit(firstColors)}
           else if (numb) {userRoles.color.setColor(colors[--numb].toString())
             collector.stop()
