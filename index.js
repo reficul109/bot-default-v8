@@ -39,13 +39,20 @@ function newAvy(int, oldUser, newUser) {
   var userRoles = client.guilds.cache.get(guilds[int]).member(newUser).roles
     if (oldUser.avatarURL() !== newUser.avatarURL() && userRoles.cache.find(role => role.id === avyRoles[int])) {
       getColors(newUser.displayAvatarURL({format: 'png', dynamic: true})).then(colors => {
-      client.channels.cache.get(avyChanns[int]).send('<@' + newUser.id + '>, Pick a new color! [Reply "1", "2", "3" or Ignore]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1))
-      const collector = new Discord.MessageCollector(client.channels.cache.get(avyChanns[int]), m => m.author.id === newUser.id, {time: 1800000})
-      collector.on('collect', cMessage => {
-        var numb = parseInt(cMessage.content)
-        if (numb) {userRoles.color.setColor(colors[--numb].toString())}
-        collector.stop()
-        cMessage.reply("Set!")})})}}
+      var firstColors = ('<@' + newUser.id + '>, Pick a new color! [Reply "1", "2", "3", "+" or Ignore]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1))
+      var secondColors = ('<@' + newUser.id + '>, Pick a new color! [Reply "4", "5", "-" or Ignore]\nhttps://encycolorpedia.com/' + colors[3].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[4].toString().substring(1))
+      client.channels.cache.get(avyChanns[int]).send(firstColors).then(function (nMessage) {
+        const collector = new Discord.MessageCollector(client.channels.cache.get(avyChanns[int]), m => m.author.id === newUser.id, {time: 1800000})
+        collector.on('collect', cMessage => {
+          var numb = parseInt(cMessage.content)
+          if (cMessage.content === '+') {
+            nMessage.edit(secondColors)}
+          else if (cMessage.content) === '-') {
+            nMessage.edit(firstColors)}
+          else if (numb) {userRoles.color.setColor(colors[--numb].toString())
+            collector.stop()
+            cMessage.reply("Set!")}
+          else {collector.stop()}})})})}}
 
 //Ready
 client.once('ready', () => {console.log('🐙')})
