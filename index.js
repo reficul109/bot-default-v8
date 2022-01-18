@@ -18,6 +18,7 @@ var rID = "320398018060746752"
 var guilds = ["412116759668064256", "707295290461257760"]
 var avyChanns = ["426520047301951509", "707311420735225886"]
 var avyRoles = ["584594259550797824", "737786182116573185"]
+const colorOptions = {count: 6}
 const prefix = 'br!'
 
 //Packages
@@ -38,9 +39,9 @@ setInterval(() => {http.get("http://bridgett-v8.herokuapp.com/")}, 280000)
 function newAvy(int, oldUser, newUser) {
   var userRoles = client.guilds.cache.get(guilds[int]).member(newUser).roles
     if (oldUser.avatarURL() !== newUser.avatarURL() && userRoles.cache.find(role => role.id === avyRoles[int])) {
-      getColors(newUser.displayAvatarURL({format: 'png', dynamic: true})).then(colors => {
+      getColors(newUser.displayAvatarURL({format: 'png', dynamic: true}), colorOptions).then(colors => {
       var firstColors = ('<@' + newUser.id + '>, Pick a new color! [Reply "1", "2", "3", "+" or Ignore]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1))
-      var secondColors = ('<@' + newUser.id + '>, Pick a new color! [Reply "4", "5", "-" or Ignore]\nhttps://encycolorpedia.com/' + colors[3].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[4].toString().substring(1))
+      var secondColors = ('<@' + newUser.id + '>, Pick a new color! [Reply "4", "5", "6", "-" or Ignore]\nhttps://encycolorpedia.com/' + colors[3].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[4].toString().substring(1))
       client.channels.cache.get(avyChanns[int]).send(firstColors).then(function (nMessage) {
         const collector = new Discord.MessageCollector(client.channels.cache.get(avyChanns[int]), m => m.author.id === newUser.id, {time: 1800000})
         collector.on('collect', cMessage => {
