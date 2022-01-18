@@ -18,7 +18,7 @@ var rID = "320398018060746752"
 var guilds = ["412116759668064256", "707295290461257760"]
 var avyChanns = ["426520047301951509", "707311420735225886"]
 var avyRoles = ["584594259550797824", "737786182116573185"]
-const colorOptions = {count: 10}
+const colorOptions = {count: 11}
 const prefix = 'br!'
 
 //Packages
