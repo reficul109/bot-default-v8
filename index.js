@@ -36,9 +36,9 @@ app.listen(port, () => console.log('Listening at port ' + port))
 setInterval(() => {http.get("http://britt-backup-v8.herokuapp.com/")}, 280000)
 
 //Functions
-function newAvy(int, oldUser, newUser) {
+function newAvy(int, oldUser, newUser, palette) {
   var userRoles = client.guilds.cache.get(guilds[int]).member(newUser).roles
-    if (oldUser.avatarURL() !== newUser.avatarURL() && userRoles.cache.find(role => role.id === avyRoles[int])) {
+    if (oldUser.avatarURL() !== newUser.avatarURL() && (palette || userRoles.cache.find(role => role.id === avyRoles[int]))) {
       getColors(newUser.displayAvatarURL({format: 'png', dynamic: true}), colorOptions).then(colors => {
       var firstColors = ('<@' + newUser.id + '>, Pick a new color! [Reply "1", "2", "3" ... "+" or Ignore]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[3].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[4].toString().substring(1))
       var secondColors = ('<@' + newUser.id + '>, Pick a new color! [Reply "6", "7", "8" ... "-" or Ignore]\nhttps://encycolorpedia.com/' + colors[5].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[6].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[7].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[8].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[9].toString().substring(1))
@@ -60,8 +60,8 @@ client.once('ready', () => {console.log('🐙')})
 
 //Avys
 client.on('userUpdate', (oldUser, newUser) => {
-  if (client.guilds.cache.get(guilds[0]).member(newUser)) {newAvy(0, oldUser, newUser)}
-  if (client.guilds.cache.get(guilds[1]).member(newUser)) {newAvy(1, oldUser, newUser)}
+  if (client.guilds.cache.get(guilds[0]).member(newUser)) {newAvy(0, oldUser, newUser, false)}
+  if (client.guilds.cache.get(guilds[1]).member(newUser)) {newAvy(1, oldUser, newUser, false)}
 })
 
 //Messages
@@ -129,11 +129,6 @@ client.on('message', message => {
     else {roles.color.setName(argresult)}
     message.reply("Set!")}
 
-  //Color Palette
-  else if (message.content.toLowerCase() === (prefix + 'palette')) {
-    if (client.guilds.cache.get(guilds[0]).member(message.author)) {newAvy(0, client.user, message.author)}
-    if (client.guilds.cache.get(guilds[1]).member(message.author)) {newAvy(1, client.user, message.author)}}
-
   //Color
   else if (msgCon.startsWith(prefix + 'color ')) {
     if (argresult === "000000") {return message.reply("Discord doesn't like this color...")}
@@ -141,6 +136,13 @@ client.on('message', message => {
     if (roles.color.id === "563155114886561792") {return message.reply('You need a custom role first! (' + prefix + 'role <text>)')}
     roles.color.setColor(argresult).catch(() => message.reply('Error.'))
     message.reply("Set!")}
+ 
+  //Color Palette
+  else if (message.content.toLowerCase() === (prefix + 'palette')) {
+    var roles = message.member.roles
+    if (roles.color.id === "563155114886561792") {return message.reply('You need a custom role first! (' + prefix + 'role <text>)')}
+    if (client.guilds.cache.get(guilds[0]).member(message.author)) {newAvy(0, client.user, message.author, true)}
+    if (client.guilds.cache.get(guilds[1]).member(message.author)) {newAvy(1, client.user, message.author, true)}}
 
   //Autoroles
   else if (msgCon.startsWith(prefix + 'autorole ') && (autorolesReef.includes(argresult.toLowerCase()) || autorolesSDJ.includes(argresult.toLowerCase()))) {
