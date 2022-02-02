@@ -145,7 +145,7 @@ client.on('message', message => {
           else if (numb) {userRoles.color.setColor(colors[--numb].toString())
             collector.stop()
             cMessage.reply("Set!")}
-          else {collector.stop()}})})}
+          else {collector.stop()}})})})}
 
   //Color
   else if (msgCon.startsWith(prefix + 'color ')) {
