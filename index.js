@@ -131,21 +131,8 @@ client.on('message', message => {
 
   //Color Palette
   else if (message.content.toLowerCase() === (prefix + 'palette')) {
-    getColors(message.author.displayAvatarURL({format: 'png', dynamic: true}), colorOptions).then(colors => {
-      var firstColors = ('<@' + newUser.id + '>, Pick a new color! [Reply "1", "2", "3" ... "+" or Ignore]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[3].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[4].toString().substring(1))
-      var secondColors = ('<@' + newUser.id + '>, Pick a new color! [Reply "6", "7", "8" ... "-" or Ignore]\nhttps://encycolorpedia.com/' + colors[5].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[6].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[7].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[8].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[9].toString().substring(1))
-      message.reply(firstColors).then(function (nMessage) {
-        const collector = new Discord.MessageCollector(message.channel, m => m.author.id === newUser.id, {time: 1800000})
-        collector.on('collect', cMessage => {
-          var numb = parseInt(cMessage.content)
-          if (cMessage.content === '+') {
-            nMessage.edit(secondColors)}
-          else if (cMessage.content === '-') {
-            nMessage.edit(firstColors)}
-          else if (numb) {userRoles.color.setColor(colors[--numb].toString())
-            collector.stop()
-            cMessage.reply("Set!")}
-          else {collector.stop()}})})})}
+    if (client.guilds.cache.get(guilds[0]).member(message.author)) {newAvy(0, client.user, message.author)}
+    if (client.guilds.cache.get(guilds[1]).member(message.author)) {newAvy(1, client.user, message.author)}}
 
   //Color
   else if (msgCon.startsWith(prefix + 'color ')) {
