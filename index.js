@@ -79,11 +79,7 @@ client.on('message', message => {
   //Box
   if (wBox.some(word => message.content.toLowerCase().includes(word))) {
     message.react("📦")
-    return message.channel.send("Boxie!")}
-
-  //Current Guild
-  var guild = 0;
-  if (message.guild === client.guilds.cache.get("707295290461257760")) {guild++;}
+    return message.channel.send("Boxie!")}  
 
   //Args
   var msgCon = message.content.toLowerCase()
@@ -113,7 +109,7 @@ client.on('message', message => {
       message.delete()}}
 
   //Vitali
-  else if (msgCon.startsWith(prefix + 'vit ') && guild === 1) {
+  else if (msgCon.startsWith(prefix + 'vit ') && message.guild === client.guilds.cache.get(guilds[1])) {
     client.fetchWebhook("869232606133252207", "JpQ9cAb_t2RcgebgFIjbN742tWSn4M1b6S6wmEVr4yYLKlOXZH-8NFNMCDeZUQLLU_ry").then(async webhook => {
     await webhook.edit({avatar: this.avatar, channel: message.channel})
     await webhook.send(argresult)})
@@ -125,13 +121,31 @@ client.on('message', message => {
     chann.messages.fetch(args[2]).then(function (nMessage) {nMessage.edit(args.slice(3).join(' '))})}
 
   //Rol
-  else if (msgCon.startsWith(prefix + 'role ') && guild === 0) {
+  else if (msgCon.startsWith(prefix + 'role ') && message.guild === client.guilds.cache.get(guilds[0])) {
     var roles = message.member.roles
     if (roles.color.id === "563155114886561792") {
       message.guild.roles.create({data: {name: argresult, color: "WHITE", position: 16, permissions: 0}}).then(role => {
       roles.add(role.id)})}
     else {roles.color.setName(argresult)}
     message.reply("Set!")}
+
+  //Color Palette
+  else if (message.content.toLowerCase() === (prefix + 'palette')) {
+    getColors(message.author.displayAvatarURL({format: 'png', dynamic: true}), colorOptions).then(colors => {
+      var firstColors = ('<@' + newUser.id + '>, Pick a new color! [Reply "1", "2", "3" ... "+" or Ignore]\nhttps://encycolorpedia.com/' + colors[0].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[1].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[2].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[3].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[4].toString().substring(1))
+      var secondColors = ('<@' + newUser.id + '>, Pick a new color! [Reply "6", "7", "8" ... "-" or Ignore]\nhttps://encycolorpedia.com/' + colors[5].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[6].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[7].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[8].toString().substring(1) + '\nhttps://encycolorpedia.com/' + colors[9].toString().substring(1))
+      message.reply(firstColors).then(function (nMessage) {
+        const collector = new Discord.MessageCollector(message.channel, m => m.author.id === newUser.id, {time: 1800000})
+        collector.on('collect', cMessage => {
+          var numb = parseInt(cMessage.content)
+          if (cMessage.content === '+') {
+            nMessage.edit(secondColors)}
+          else if (cMessage.content === '-') {
+            nMessage.edit(firstColors)}
+          else if (numb) {userRoles.color.setColor(colors[--numb].toString())
+            collector.stop()
+            cMessage.reply("Set!")}
+          else {collector.stop()}})})}}
 
   //Color
   else if (msgCon.startsWith(prefix + 'color ')) {
@@ -200,7 +214,7 @@ client.on('message', message => {
       origin.send(score + " points!")})}
 
   //Chaos
-  else if (message.content.toLowerCase() === (prefix + 'chaos') && guild === 0) {
+  else if (message.content.toLowerCase() === (prefix + 'chaos') && message.guild === client.guilds.cache.get(guilds[0])) {
     message.delete()
     const chaos = new Discord.MessageCollector(message.channel, m => m.author.id !== bID, {time: 3600000})
     var origin = message.channel
