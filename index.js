@@ -11,8 +11,8 @@ var delt = ["Why did you delete that", "I saw it!", "deleted..."]
 var pin = ["Pin!", "Pin...", "📌!"]
 var nChan = ["First!", "Pole.", "Empty...", "Fresh!"]
 var nMen = ["Welcome!", "Newbie!", "Hey!"]
-var wBritt = ['britt', 'bridgett']
-var wBox = ['box', 'caja', 'boite', 'kahon', 'kiste', 'caixa', 'scatola', 'doos', '箱', 'hako', '📦']
+var wBritt = ['britt', 'bridgett', '530502122190405652']
+var wBox = ['box', 'caja', 'boite', 'kahon', 'kiste', 'caixa', 'scatola', '箱', 'hako', '📦']
 var bID = "530502122190405652"
 var rID = "320398018060746752"
 var guilds = ["412116759668064256", "707295290461257760"]
@@ -33,7 +33,7 @@ const getColors = require('get-image-colors')
 var port = (process.env.PORT || 0)
 app.get('/', (req, res) => res.sendStatus(200))
 app.listen(port, () => console.log('Listening at port ' + port))
-setInterval(() => {http.get("http://britt-backup-v8.herokuapp.com/")}, 280000)
+setInterval(() => {http.get("http://bridgett-v8.herokuapp.com/")}, 280000)
 
 //Functions
 function newAvy(int, oldUser, newUser, palette) {
