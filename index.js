@@ -71,6 +71,7 @@ client.on('channelUpdate', (oldChannel, newChannel) => {
   if (!(oldChannel && newChannel)) {return;}
   if (newChannel.guild !== client.guilds.cache.get(guilds[1])) {return;}
   if (oldChannel.position === newChannel.position) {return;}
+  console.log(oldChannel.position + ', ' + newChannel.position)
   if (!channelMoved) {
     newChannel.setPosition(oldChannel.position)
     channelMoved = true;
