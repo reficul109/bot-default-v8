@@ -68,8 +68,11 @@ client.on('userUpdate', (oldUser, newUser) => {
 
 //Channel Lock
 client.on('channelUpdate', (oldChannel, newChannel) => {
+  console.log(oldChannel.position + ', ' + newChannel.position)
   if (!(oldChannel && newChannel)) {return;}
+  console.log(oldChannel.position + ', ' + newChannel.position)
   if (newChannel.guild !== client.guilds.cache.get(guilds[1])) {return;}
+  console.log(oldChannel.position + ', ' + newChannel.position)
   if (oldChannel.position === newChannel.position) {return;}
   console.log(oldChannel.position + ', ' + newChannel.position)
   if (!channelMoved) {
