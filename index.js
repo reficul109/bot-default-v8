@@ -18,7 +18,6 @@ var rID = "320398018060746752"
 var guilds = ["412116759668064256", "707295290461257760"]
 var avyChanns = ["426520047301951509", "707311420735225886"]
 var avyRoles = ["584594259550797824", "737786182116573185"]
-var channelMoved = false;
 const colorOptions = {count: 11}
 const prefix = 'br!'
 
@@ -64,24 +63,6 @@ client.on('userUpdate', (oldUser, newUser) => {
   if (client.guilds.cache.get(guilds[0]).member(newUser)) {newAvy(0, oldUser, newUser, false)}
   if (client.guilds.cache.get(guilds[1]).member(newUser)) {newAvy(1, oldUser, newUser, false)}
 })
-
-
-//Channel Lock
-client.on('channelUpdate', (oldChannel, newChannel) => {
-  console.log(oldChannel.position + ', ' + newChannel.position)
-  if (!(oldChannel && newChannel)) {return;}
-  console.log(oldChannel.position + ', ' + newChannel.position)
-  if (newChannel.guild !== client.guilds.cache.get(guilds[1])) {return;}
-  console.log(oldChannel.position + ', ' + newChannel.position)
-  if (oldChannel.position === newChannel.position) {return;}
-  console.log(oldChannel.position + ', ' + newChannel.position)
-  if (!channelMoved) {
-    newChannel.setPosition(oldChannel.position)
-    channelMoved = true;
-    console.log('hecho')}
-  else {channelMoved = false;
-    console.log('bien')}})
-
 
 //Messages
 client.on('message', message => {
