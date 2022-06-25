@@ -124,7 +124,7 @@ client.on('message', message => {
   else if (msgCon.startsWith(prefix + 'role ') && message.guild === client.guilds.cache.get(guilds[0])) {
     var roles = message.member.roles
     if (roles.color.id === "563155114886561792") {
-      message.guild.roles.create({data: {name: argresult, color: "WHITE", position: 16, permissions: 0}}).then(role => {
+      message.guild.roles.create({data: {name: argresult, color: "WHITE", position: 17, permissions: 0}}).then(role => {
       roles.add(role.id)})}
     else {roles.color.setName(argresult)}
     message.reply("Set!")}
