@@ -72,36 +72,31 @@ client.on('message', message => {
   //Ignore Bots
   if (message.author.bot || message.system) return;
 
-  //Britt
-  if (wBritt.some(word => message.content.toLowerCase().includes(word))) {
-    return message.channel.send("Me!")}
-
-  //Box
-  if (wBox.some(word => message.content.toLowerCase().includes(word))) {
-    message.react("📦")
-    return message.channel.send("Boxie!")}  
-
   //Args
   var msgCon = message.content.toLowerCase()
   var args = message.content.split(' ')
   var argresult = args.slice(1).join(' ')
 
   //Message Attachments
-  if (message.attachments.size) {var msgAtt = Array.from(message.attachments.values(), x => x.url)}
-    
-  //Cool Hearts
-  if (msgAtt && message.channel.parentID === "430744121297207296") {message.react(hearts[Math.floor(Math.random() * hearts.length)])}
-  
-  //Non-Prefix Ignore
-  if (!message.content.toLowerCase().startsWith(prefix)) return;                
+  if (message.attachments.size) {var msgAtt = Array.from(message.attachments.values(), x => x.url)}                
     
   //Funny DM Stuff
-  if (!message.guild && message.author.id !== rID) {
-    client.users.cache.get(rID).send('**' + message.author.tag + '**: ' + message.content, {files: msgAtt})
-    return;}
-    
+  if (!message.guild && message.author.id !== rID) {client.users.cache.get(rID).send('**' + message.author.tag + '**: ' + message.content, {files: msgAtt})}
+
   else {
-    
+
+  //Britt
+  if (wBritt.some(word => msgCon.includes(word))) {
+    return message.channel.send("Me!")}
+
+  //Box
+  if (wBox.some(word => msgCon.includes(word))) {
+    message.react("📦")
+    return message.channel.send("Boxie!")}
+
+  //Non-Prefix Ignore
+  if (!message.content.toLowerCase().startsWith(prefix)) return;
+
   //Say
   if (msgCon.startsWith(prefix + 'say') && (argresult || msgAtt)) {
     if (client.channels.cache.get(args[1])) {
