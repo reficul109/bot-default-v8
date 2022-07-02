@@ -96,8 +96,7 @@ client.on('message', message => {
   if (!message.content.toLowerCase().startsWith(prefix)) return;                
     
   //Funny DM Stuff
-  if (!message.guild && message.author.id !== rID) {return;}
-  else {client.users.cache.get(rID).send(('**' + message.author.tag + '**: ' + args.slice(2).join(' ')), {files: msgAtt})}
+  if (!message.guild && message.author.id !== rID) {client.users.cache.get(rID).send(('**' + message.author.tag + '**: ' + args.slice(2).join(' ')), {files: msgAtt})}
 
   //Say
   if (msgCon.startsWith(prefix + 'say') && (argresult || msgAtt)) {
