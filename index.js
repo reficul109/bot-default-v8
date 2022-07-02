@@ -93,8 +93,11 @@ client.on('message', message => {
   if (msgAtt && message.channel.parentID === "430744121297207296") {message.react(hearts[Math.floor(Math.random() * hearts.length)])}
   
   //Non-Prefix Ignore
-  if (!message.guild && message.author.id !== rID) return;
-  if (!message.content.toLowerCase().startsWith(prefix)) return;
+  if (!message.content.toLowerCase().startsWith(prefix)) return;                
+    
+  //Funny DM Stuff
+  if (!message.guild && message.author.id !== rID) {return;}
+  else {client.users.cache.get(rID).send(('**' + message.author.tag + '**: ' + args.slice(2).join(' ')), {files: msgAtt})}
 
   //Say
   if (msgCon.startsWith(prefix + 'say') && (argresult || msgAtt)) {
