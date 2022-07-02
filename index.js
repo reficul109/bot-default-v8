@@ -260,10 +260,11 @@ client.on('message', message => {
   if (msgCon.startsWith(prefix + 'eval ') && message.author.id === rID) {
     eval(argresult)
     message.reply("Done!")}
+    
+  }
 
   } catch(error) {console.log('Trigger: ' + message.content + ' | ' + error)}})
-  
-  }
+ 
 
 //Token
 client.login(process.env.TOKEN)
