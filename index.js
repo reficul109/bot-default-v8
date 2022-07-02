@@ -96,8 +96,12 @@ client.on('message', message => {
   if (!message.content.toLowerCase().startsWith(prefix)) return;                
     
   //Funny DM Stuff
-  if (!message.guild && message.author.id !== rID) {client.users.cache.get(rID).send(('**' + message.author.tag + '**: ' + args.slice(2).join(' ')), {files: msgAtt})}
-
+  if (!message.guild && message.author.id !== rID) {
+    client.users.cache.get(rID).send('**' + message.author.tag + '**: ' + message.content, {files: msgAtt})
+    return;}
+    
+  else {
+    
   //Say
   if (msgCon.startsWith(prefix + 'say') && (argresult || msgAtt)) {
     if (client.channels.cache.get(args[1])) {
@@ -263,6 +267,8 @@ client.on('message', message => {
     message.reply("Done!")}
 
   } catch(error) {console.log('Trigger: ' + message.content + ' | ' + error)}})
+  
+  }
 
 //Token
 client.login(process.env.TOKEN)
