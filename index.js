@@ -111,10 +111,10 @@ client.on('message', message => {
       z = parseInt(argresult) * -1
       extra+= ("quitando " + z + " ")}
     for (let i = 0; i < x; i++) {
-      dado = Math.floor(Math.random() * y + z + 1)
+      dado = Math.floor(Math.random() * y + 1)
       tiradas = (tiradas + dado + ", ")
       total = (total + dado)}
-    return message.channel.send(tiradas + extra + "en total da: " + total)}
+    return message.channel.send(tiradas + extra + "en total da: " + (total + z))}
 
   //Non-Prefix Ignore
   if (!msgCon.startsWith(prefix)) return;
