@@ -112,9 +112,9 @@ client.on('message', message => {
       extra+= ("quitando " + z + " ")}
     for (let i = 0; i < x; i++) {
       dado = Math.floor(Math.random() * y + z + 1)
-      tiradas = (dado + ", ")
+      tiradas = (tiradas + dado + ", ")
       total = (total + dado)}
-    return message.channel.send(tiradas + extra  + "en total da: " + total)}
+    return message.channel.send(tiradas + extra + "en total da: " + total)}
 
   //Non-Prefix Ignore
   if (!msgCon.startsWith(prefix)) return;
