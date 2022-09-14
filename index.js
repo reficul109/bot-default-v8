@@ -96,21 +96,25 @@ client.on('message', message => {
     
   //Roll
   if (msgCon.startsWith("roll")) {
-    var z = 0
-    if (result.startsWith("d")) {x = 1}
-    else {var x = result.parseInt()}
-    result = result.split("d")[1]
-    var y = result.parseInt())
-    if (result.contains("+")) {
-      result = result.split("+")[1]
-      z = result.parseInt()}
-    else if (result.contains("-")) {
-      result = result.split("-")[1]
-      z = result.parseInt() * -1}}
-    for(let i = 0; i < x; i++) {
-      dado = [Math.floor(Math.random() * y + z + 1)]
-      result+=dado}
-    return message.channel.send(result)}
+    var total = 0, dado = 0, x = 0, y = 0, z = 0
+    var tiradas = "", extra ""
+    if (argresult.startsWith("d")) {x = 1}
+    else {x = parseInt(argresult)}
+    argresult = argresult.split("d")[1]
+    y = parseInt(argresult)
+    if (argresult.includes("+")) {
+      argresult = argresult.split("+")[1]
+      z = parseInt(argresult)
+      extra+= ("mas " + z + " ")}
+    else if (argresult.includes("-")) {
+      argresult = argresult.split("-")[1]
+      z = parseInt(argresult) * -1
+      extra+= ("quitando " + z + " ")}
+    for (let i = 0; i < x; i++) {
+      dado = Math.floor(Math.random() * y + z + 1)
+      tiradas = (dado + ", ")
+      total = (total + dado)}
+    return message.channel.send(tiradas + extra  + "en total da: " + total)}
 
   //Non-Prefix Ignore
   if (!msgCon.startsWith(prefix)) return;
