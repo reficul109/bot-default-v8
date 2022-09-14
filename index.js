@@ -95,9 +95,9 @@ client.on('message', message => {
     return message.channel.send("Boxie!")}
     
   //Roll
-  if (msgCon.startsWith("roll")) {
+  if (msgCon.startsWith("roll ")) {
     var total = 0, dado = 0, x = 0, y = 0, z = 0
-    var tiradas = "", extra ""
+    var tiradas = "", extra = ""
     if (argresult.startsWith("d")) {x = 1}
     else {x = parseInt(argresult)}
     argresult = argresult.split("d")[1]
