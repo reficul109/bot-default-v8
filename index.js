@@ -93,9 +93,27 @@ client.on('message', message => {
   if (wBox.some(word => msgCon.includes(word))) {
     message.react("📦")
     return message.channel.send("Boxie!")}
+    
+  //Roll
+  if (msgCon.startsWith("roll")) {
+    var z = 0
+    if (result.startsWith("d")) {x = 1}
+    else {var x = result.parseInt()}
+    result = result.split("d")[1]
+    var y = result.parseInt())
+    if (result.contains("+")) {
+      result = result.split("+")[1]
+      z = result.parseInt()}
+    else if (result.contains("-")) {
+      result = result.split("-")[1]
+      z = result.parseInt() * -1}}
+    for(let i = 0; i < x; i++) {
+      dado = [Math.floor(Math.random() * y + z + 1)]
+      result+=dado}
+    return message.channel.send(result)}
 
   //Non-Prefix Ignore
-  if (!message.content.toLowerCase().startsWith(prefix)) return;
+  if (!msgCon.startsWith(prefix)) return;
 
   //Say
   if (msgCon.startsWith(prefix + 'say') && (argresult || msgAtt)) {
@@ -139,7 +157,7 @@ client.on('message', message => {
     message.reply("Set!")}
  
   //Color Palette
-  else if (message.content.toLowerCase() === (prefix + 'palette')) {
+  else if (msgCon === (prefix + 'palette')) {
     var roles = message.member.roles
     if (roles.color.id === "563155114886561792") {return message.reply('You need a custom role first! (' + prefix + 'role <text>)')}
     if (client.guilds.cache.get(guilds[0]).member(message.author)) {newAvy(0, client.user, message.author, true)}
@@ -153,9 +171,9 @@ client.on('message', message => {
     if (!roles.cache.find(role => role.id === rol.id)) {roles.add(rol.id)}
     else {roles.remove(rol.id)}
     message.reply("Done!")}
-  
+
   //Ping Pong Bomb
-  else if (message.content.toLowerCase() === (prefix + '🏓')) {
+  else if (msgCon === (prefix + '🏓')) {
     var player = message.author, origin = message.channel
     origin.send('🏓❗')
     const game = new Discord.MessageCollector(origin, m => m.author.id === player.id, {time: 600000})
@@ -204,7 +222,7 @@ client.on('message', message => {
       origin.send(score + " points!")})}
 
   //Chaos
-  else if (message.content.toLowerCase() === (prefix + 'chaos') && message.guild === client.guilds.cache.get(guilds[0])) {
+  else if (msgCon === (prefix + 'chaos') && message.guild === client.guilds.cache.get(guilds[0])) {
     message.delete()
     const chaos = new Discord.MessageCollector(message.channel, m => m.author.id !== bID, {time: 3600000})
     var origin = message.channel
