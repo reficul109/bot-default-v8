@@ -33,7 +33,7 @@ const getColors = require('get-image-colors')
 var port = (process.env.PORT || 0)
 app.get('/', (req, res) => res.sendStatus(200))
 app.listen(port, () => console.log('Listening at port ' + port))
-setInterval(() => {http.get("http://britt-backup-v8.herokuapp.com/")}, 280000)
+setInterval(() => {http.get("http://bridgett-v8.herokuapp.com/")}, 280000)
 
 //Functions
 function newAvy(int, oldUser, newUser, palette) {
@@ -95,7 +95,7 @@ client.on('message', message => {
     return message.channel.send("Boxie!")}
     
   //Roll
-  if (msgCon.startsWith("roll ")) {
+  if (msgCon.startsWith("roll ")  && message.guild === client.guilds.cache.get(guilds[1])) {
     var total = 0, dado = 0, x = 0, y = 0, z = 0
     var tiradas = "", extra = ""
     if (argresult.startsWith("d")) {x = 1}
