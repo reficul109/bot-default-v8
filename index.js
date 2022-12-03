@@ -24,16 +24,7 @@ const prefix = 'br!'
 //Packages
 const Discord = require('discord.js')
 const client = new Discord.Client({presence: {status: 'online', activity: {name: games[Math.floor(Math.random() * games.length)]}}, disableMentions: 'everyone'})
-const http = require('http')
-const express = require('express')
-const app = express()
 const getColors = require('get-image-colors')
-
-//Page
-var port = (process.env.PORT || 0)
-app.get('/', (req, res) => res.sendStatus(200))
-app.listen(port, () => console.log('Listening at port ' + port))
-//setInterval(() => {http.get("http://britt-backup-v8.herokuapp.com/")}, 280000)
 
 //Functions
 function newAvy(int, oldUser, newUser, palette) {
@@ -72,11 +63,6 @@ client.on('message', message => {
   //Ignore Bots
   if (message.author.bot || message.system) return;
 
-  //Args
-  var msgCon = message.content.toLowerCase()
-  var args = message.content.split(' ')
-  var argresult = args.slice(1).join(' ')
-
   //Message Attachments
   if (message.attachments.size) {var msgAtt = Array.from(message.attachments.values(), x => x.url)}                
     
@@ -84,6 +70,11 @@ client.on('message', message => {
   if (!message.guild && message.author.id !== rID) {client.users.cache.get(rID).send('**' + message.author.tag + '**: ' + message.content, {files: msgAtt})}
 
   else {
+    
+  //Args
+  var msgCon = message.content.toLowerCase()
+  var args = message.content.split(' ')
+  var argresult = args.slice(1).join(' ')
 
   //Britt
   if (wBritt.some(word => msgCon.includes(word))) {
