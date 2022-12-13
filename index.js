@@ -5,15 +5,6 @@ const prefix = 'PREFIX'
 //Packages
 const Discord = require('discord.js')
 const client = new Discord.Client({presence: {status: 'online', activity: {name: 'GAME'}}, disableMentions: 'everyone'})
-const http = require('http')
-const express = require('express')
-const app = express()
-
-//Page
-var port = (process.env.PORT || 0)
-app.get('/', (req, res) => res.sendStatus(200))
-app.listen(port, () => console.log('Listening at port ' + port))
-setInterval(() => {http.get("SITE_URL")}, 280000)
 
 //Ready
 client.once('ready', () => {console.log('---')})
@@ -45,7 +36,7 @@ client.on('message', message => {
     message.channel.send(argresult, {files: msgAtt})
     message.delete()}
 
-  //Evaluate command
+  //Message evaluation command
   if (msgCon.startsWith(prefix + 'eval ') && message.author.id === ownerID) {
     eval(argresult)}
 
