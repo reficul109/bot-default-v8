@@ -78,30 +78,6 @@ client.on('message', message => {
   if (wBox.some(word => msgCon.includes(word))) {
     message.react("📦")
     return message.channel.send("Boxie!")}
-    
-  //Roll
-  if (msgCon.startsWith("roll ")  && message.guild === client.guilds.cache.get(guilds[1])) {
-    var total = 0, dado = 0, x = 0, y = 0, z = 0
-    var tiradas = "", extra = ""
-    if (argresult.startsWith("d")) {x = 1}
-    else {x = parseInt(argresult)}
-    argresult = argresult.split("d")[1]
-    y = parseInt(argresult)
-    if (argresult.includes("+")) {
-      argresult = argresult.split("+")[1]
-      z = parseInt(argresult)
-      extra+= ("mas " + z + " ")}
-    else if (argresult.includes("-")) {
-      argresult = argresult.split("-")[1]
-      z = parseInt(argresult) * -1
-      extra+= ("quitando " + z + " ")}
-    if (x <= 0) {return message.channel.send("Ehhh?")}
-    if (y <= 1) {return message.channel.send("xD")}
-    for (let i = 0; i < x; i++) {
-      dado = Math.floor(Math.random() * y + 1)
-      tiradas = (tiradas + dado + ", ")
-      total = (total + dado)}
-    return message.channel.send(tiradas + extra + "en total da: " + (total + z))}
 
   //Non-Prefix Ignore
   if (!msgCon.startsWith(prefix)) return;
@@ -211,6 +187,30 @@ client.on('message', message => {
             replied = false})})}}})
     game.on('end', () => {
       origin.send(score + " points!")})}
+    
+  //Roll
+  else if (msgCon.startsWith(prefix + "roll ")) {
+    var total = 0, dado = 0, x = 0, y = 0, z = 0
+    var tiradas = "", extra = ""
+    if (argresult.startsWith("d")) {x = 1}
+    else {x = parseInt(argresult)}
+    argresult = argresult.split("d")[1]
+    y = parseInt(argresult)
+    if (argresult.includes("+")) {
+      argresult = argresult.split("+")[1]
+      z = parseInt(argresult)
+      extra+= ("mas " + z + " ")}
+    else if (argresult.includes("-")) {
+      argresult = argresult.split("-")[1]
+      z = parseInt(argresult) * -1
+      extra+= ("quitando " + z + " ")}
+    if (x <= 0) {return message.channel.send("Ehhh?")}
+    if (y <= 1) {return message.channel.send("xD")}
+    for (let i = 0; i < x; i++) {
+      dado = Math.floor(Math.random() * y + 1)
+      tiradas = (tiradas + dado + ", ")
+      total = (total + dado)}
+    return message.channel.send(tiradas + extra + "en total da: " + (total + z))}
 
   //Chaos
   else if (msgCon === (prefix + 'chaos') && message.guild === client.guilds.cache.get(guilds[0])) {
